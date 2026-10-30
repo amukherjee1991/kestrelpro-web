@@ -14,7 +14,7 @@ document.getElementById("submit-import").addEventListener("click", () => {
   importZIP();
 });
 
-// Upload file to Pi-hole
+// Upload file to KestrelPro
 function importZIP() {
   const file = document.getElementById("file").files[0];
   if (file === undefined) {

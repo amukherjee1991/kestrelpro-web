@@ -11,7 +11,7 @@ mg.include('scripts/lua/header_authenticated.lp','r')
 ?>
 <!-- Title -->
 <div class="page-header">
-    <h1>Pi-hole interface overview</h1>
+    <h1>KestrelPro interface overview</h1>
 </div>
 <div class="row">
     <div class="col-md-12">

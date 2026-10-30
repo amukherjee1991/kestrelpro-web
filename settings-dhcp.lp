@@ -25,7 +25,7 @@ mg.include('scripts/lua/settings_header.lp','r')
                     <div class="col-md-12">
                         <div>
                             <input type="checkbox" id="dhcp.active" data-key="dhcp.active"><label for="dhcp.active"><strong>DHCP server enabled</strong></label>
-                            <p class="help-block" id="dhcpnotice">Make sure your router's DHCP server is disabled when using the Pi-hole DHCP server!</p>
+                            <p class="help-block" id="dhcpnotice">Make sure your router's DHCP server is disabled when using the KestrelPro DHCP server!</p>
                         </div>
                     </div>
                     <div class="col-xs-12">
@@ -74,12 +74,12 @@ mg.include('scripts/lua/settings_header.lp','r')
                         </div>
                     </div>
                     <div class="col-md-12">
-                        <p>Leave the netmask field empty to have Pi-hole infer it from the configured IP address of your device. If you want to specify a netmask, you can use the format <code>255.255.255.0</code>.</p>
+                        <p>Leave the netmask field empty to have KestrelPro infer it from the configured IP address of your device. If you want to specify a netmask, you can use the format <code>255.255.255.0</code>.</p>
                     </div>
                     <div class="col-md-12">
                         <div>
                             <input type="checkbox" id="dhcp.ipv6" data-key="dhcp.ipv6" class="DHCPgroup">&nbsp;<label for="dhcp.ipv6"><strong>Enable additional IPv6 support (SLAAC + RA)</strong></label>
-                            <p class="help-block">Enable this option to enable IPv6 support for the Pi-hole DHCP server. This will allow the Pi-hole to hand out IPv6 addresses to clients and also provide IPv6 router advertisements (RA) to clients. This option is only useful if the Pi-hole is configured with an IPv6 address.</p>
+                            <p class="help-block">Enable this option to enable IPv6 support for the KestrelPro DHCP server. This will allow the KestrelPro to hand out IPv6 addresses to clients and also provide IPv6 router advertisements (RA) to clients. This option is only useful if the KestrelPro is configured with an IPv6 address.</p>
                         </div>
                     </div>
                 </div>
@@ -110,20 +110,20 @@ mg.include('scripts/lua/settings_header.lp','r')
                     <div class="col-sm-12">
                         <div>
                             <input type="checkbox" id="dhcp.rapidCommit" data-key="dhcp.rapidCommit" class="DHCPgroup">&nbsp;<label for="dhcp.rapidCommit"><strong>Enable DHCPv4 rapid commit (fast address assignment)</strong></label>
-                            <p class="help-block">The DHCPv4 rapid commit option allows the Pi-hole DHCP server to assign an IP address to a client right away. This can notably speed up the address assignment process and you will notice, e.g., faster WiFi joins in your network. This option should only be enabled if the Pi-hole DHCP server is the only DHCP server in your network.</p>
+                            <p class="help-block">The DHCPv4 rapid commit option allows the KestrelPro DHCP server to assign an IP address to a client right away. This can notably speed up the address assignment process and you will notice, e.g., faster WiFi joins in your network. This option should only be enabled if the KestrelPro DHCP server is the only DHCP server in your network.</p>
                         </div>
                     </div>
                     <div class="col-sm-12">
                         <div>
                             <input type="checkbox" id="dhcp.multiDNS" data-key="dhcp.multiDNS" class="DHCPgroup">&nbsp;<label for="dhcp.multiDNS"><strong>Advertise DNS server multiple times</strong></label>
-                            <p class="help-block">Advertise DNS server multiple times to clients. Some devices will add their own proprietary DNS servers to the list of DNS servers, which can cause issues with Pi-hole. This option will advertise the Pi-hole DNS server multiple times to clients, which should prevent this from happening.</p>
+                            <p class="help-block">Advertise DNS server multiple times to clients. Some devices will add their own proprietary DNS servers to the list of DNS servers, which can cause issues with KestrelPro. This option will advertise the KestrelPro DNS server multiple times to clients, which should prevent this from happening.</p>
                         </div>
                     </div>
                     <div class="col-sm-12">
                         <div>
                             <input type="checkbox" id="dhcp.ignoreUnknownClients" data-key="dhcp.ignoreUnknownClients" class="DHCPgroup">&nbsp;<label for="dhcp.ignoreUnknownClients"><strong>Ignore unknown DHCP clients</strong></label>
                             <p class="help-block">
-                                If this option is set, Pi-hole ignores all clients which are not explicitly configured through dhcp.hosts. This can be useful to prevent unauthorized clients from getting an IP address from the DHCP server.<br>
+                                If this option is set, KestrelPro ignores all clients which are not explicitly configured through dhcp.hosts. This can be useful to prevent unauthorized clients from getting an IP address from the DHCP server.<br>
                                 It should be noted that this option is not a security feature, as clients can still assign themselves an IP address and use the network. It is merely a convenience feature to prevent unknown clients from getting a valid IP configuration assigned automatically.<br>
                                 <b>Note:</b> When this feature is enabled <b>you will need to configure new clients manually</b> in <code>dhcp.hosts</code> before they can use the network.
                             </p>
@@ -215,10 +215,10 @@ mg.include('scripts/lua/settings_header.lp','r')
                     </div>
                     <div class="col-xs-12 col-md-6">
                         <label>Examples:</label>
-                        <div class="card"><pre>00:20:e0:3b:13:af,192.168.0.123</pre> tells Pi-hole to give the machine with hardware address <code>00:20:e0:3b:13:af</code> the address <code>192.168.0.123</code></div>
-                        <div class="card"><pre>00:20:e0:3b:13:af,laptop</pre> tells Pi-hole to give the machine with hardware address <code>00:20:e0:3b:13:af</code> the name <code>laptop</code></div>
-                        <div class="card"><pre>00:20:e0:3b:13:af,192.168.0.123,laptop,infinite</pre> tells Pi-hole to give the machine with hardware address <code>00:20:e0:3b:13:af</code> the address <code>192.168.0.123</code>, the name <code>laptop</code>, and an infinite DHCP lease</div>
-                        <div class="card"><pre>00:20:e0:3b:13:af,[2001:db8::1]</pre> tells Pi-hole to give the machine with hardware address <code>00:20:e0:3b:13:af</code> the address <code>[2001:db8::1]</code></div>
+                        <div class="card"><pre>00:20:e0:3b:13:af,192.168.0.123</pre> tells KestrelPro to give the machine with hardware address <code>00:20:e0:3b:13:af</code> the address <code>192.168.0.123</code></div>
+                        <div class="card"><pre>00:20:e0:3b:13:af,laptop</pre> tells KestrelPro to give the machine with hardware address <code>00:20:e0:3b:13:af</code> the name <code>laptop</code></div>
+                        <div class="card"><pre>00:20:e0:3b:13:af,192.168.0.123,laptop,infinite</pre> tells KestrelPro to give the machine with hardware address <code>00:20:e0:3b:13:af</code> the address <code>192.168.0.123</code>, the name <code>laptop</code>, and an infinite DHCP lease</div>
+                        <div class="card"><pre>00:20:e0:3b:13:af,[2001:db8::1]</pre> tells KestrelPro to give the machine with hardware address <code>00:20:e0:3b:13:af</code> the address <code>[2001:db8::1]</code></div>
                     </div>
                     <div class="col-xs-12">
                         <div class="box box-info collapsed-box">
@@ -239,12 +239,12 @@ mg.include('scripts/lua/settings_header.lp','r')
                                     <li> For DHCPv4, the special option <code>id:*</code> means "ignore any client-id and use MAC addresses only." This is useful when a client presents a client-id sometimes but not others.</li>
                                     <li> If a name appears in <code>/etc/hosts</code>, the associated address can be allocated to a DHCP lease, but only if a separate line specifying the name also exists. Only one hostname can be given per line, but aliases are possible by using CNAMEs. Note that <code>/etc/hosts</code> is NOT used when the DNS server side of dnsmasq is disabled by setting the DNS server port to zero.</li>
                                     <li> More than one line can be associated (by name, hardware address or UID) with a host. Which one is used (and therefore which address is allocated by DHCP and appears in the DNS) depends on the subnet on which the host last obtained a DHCP lease: the line with an address within the subnet is used. If more than one address is within the subnet, the result is undefined. <strong>A corollary to this is that the name associated with a host defined here does not appear in the DNS until the host obtains a DHCP lease.</strong></li>
-                                    <li> The special keyword <code>ignore</code> tells Pi-hole to never offer a DHCP lease to a machine. The machine can be specified by hardware address, client ID or hostname, for instance <code>00:20:e0:3b:13:af,ignore</code>. This is useful when there is another DHCP server on the network which should be used by some machines.</li>
-                                    <li> The <code>set:&lt;tag&gt;</code> construct sets the tag whenever this line is in use. This can be used to selectively send DHCP options just for this host. More than one tag can be set per line directive (but not in other places where "set:&lt;tag&gt;" is allowed). When a host matches any directive (or one implied by <code>/etc/ethers</code>) then the special tag "<code>known</code>"" is set. This allows Pi-hole to be configured to ignore requests from unknown machines using a custom config option <code>dhcp-ignore=tag:!known</code> in your own config file. If the host matches only a directive which cannot be used because it specifies an address on different subnet, the tag "<code>known-othernet</code>" is set.</li>
+                                    <li> The special keyword <code>ignore</code> tells KestrelPro to never offer a DHCP lease to a machine. The machine can be specified by hardware address, client ID or hostname, for instance <code>00:20:e0:3b:13:af,ignore</code>. This is useful when there is another DHCP server on the network which should be used by some machines.</li>
+                                    <li> The <code>set:&lt;tag&gt;</code> construct sets the tag whenever this line is in use. This can be used to selectively send DHCP options just for this host. More than one tag can be set per line directive (but not in other places where "set:&lt;tag&gt;" is allowed). When a host matches any directive (or one implied by <code>/etc/ethers</code>) then the special tag "<code>known</code>"" is set. This allows KestrelPro to be configured to ignore requests from unknown machines using a custom config option <code>dhcp-ignore=tag:!known</code> in your own config file. If the host matches only a directive which cannot be used because it specifies an address on different subnet, the tag "<code>known-othernet</code>" is set.</li>
                                     <li> The <code>tag:&lt;tag&gt;</code> construct filters which directives are used; more than one can be provided, in this case the request must match all of them. Tagged directives are used in preference to untagged ones. Note that one of <code>&lt;hwaddr&gt;</code>, <code>&lt;client_id&gt;</code> or <code>&lt;hostname&gt;</code> still needs to be specified (can be a wildcard).</li>
-                                    <li> Ethernet addresses (but not client-ids) may have wildcard bytes, so for example <code>00:20:e0:3b:13:*,ignore</code> will cause Pi-hole to ignore a range of hardware addresses.</li>
+                                    <li> Ethernet addresses (but not client-ids) may have wildcard bytes, so for example <code>00:20:e0:3b:13:*,ignore</code> will cause KestrelPro to ignore a range of hardware addresses.</li>
                                     <li> Hardware addresses normally match any network (ARP) type, but it is possible to restrict them to a single ARP type by preceding them with the ARP-type (in HEX) and "<code>-</code>". so the line <code>06-00:20:e0:3b:13:af,1.2.3.4</code> will only match a Token-Ring hardware address, since the ARP-address type for token ring is <code>6</code>.</li>
-                                    <li> As a special case, in DHCPv4, it is possible to include more than one hardware address. eg: <code>11:22:33:44:55:66,12:34:56:78:90:12,192.168.0.2</code>. This allows an IP address to be associated with multiple hardware addresses, and gives Pi-hole permission to abandon a DHCP lease to one of the hardware addresses when another one asks for a lease. Beware that this is a dangerous thing to do, it will only work reliably if only one of the hardware addresses is active at any time and there is no way for dnsmasq to enforce this. It is, for instance, useful to allocate a stable IP address to a laptop which has both wired and wireless interfaces.</li>
+                                    <li> As a special case, in DHCPv4, it is possible to include more than one hardware address. eg: <code>11:22:33:44:55:66,12:34:56:78:90:12,192.168.0.2</code>. This allows an IP address to be associated with multiple hardware addresses, and gives KestrelPro permission to abandon a DHCP lease to one of the hardware addresses when another one asks for a lease. Beware that this is a dangerous thing to do, it will only work reliably if only one of the hardware addresses is active at any time and there is no way for dnsmasq to enforce this. It is, for instance, useful to allocate a stable IP address to a laptop which has both wired and wireless interfaces.</li>
                                 </ul>
                             </div>
                         </div>

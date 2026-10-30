@@ -215,7 +215,7 @@ function enableAll() {
   }
 }
 
-// Pi-hole IPv4/CIDR validator by DL6ER, see regexr.com/50csh
+// KestrelPro IPv4/CIDR validator by DL6ER, see regexr.com/50csh
 function validateIPv4CIDR(ip) {
   // One IPv4 element is 8bit: 0 - 255
   const ipv4elem = "(25[0-5]|2[0-4][0-9]|1[0-9][0-9]|[1-9][0-9]?|0)";
@@ -240,7 +240,7 @@ function validateIPv4(ip) {
   return validateIPv4CIDR(ipv4WithCIDR);
 }
 
-// Pi-hole IPv6/CIDR validator by DL6ER, see regexr.com/50csn
+// KestrelPro IPv6/CIDR validator by DL6ER, see regexr.com/50csn
 function validateIPv6CIDR(ip) {
   // One IPv6 element is 16bit: 0000 - FFFF
   const ipv6elem = "[0-9A-Fa-f]{1,4}";
@@ -534,7 +534,7 @@ function checkMessages() {
   })
     .done(data => {
       if (data.count > 0) {
-        const more = '\nAccess "Tools/Pi-hole diagnosis" for further details.';
+        const more = '\nAccess "Tools/KestrelPro diagnosis" for further details.';
         const title =
           data.count > 1
             ? "There are " + data.count + " warnings." + more
@@ -738,7 +738,7 @@ function loadingOverlay(reloadAfterTimeout = false) {
   NProgress.start();
   waitMe = new WaitMe(".wrapper", {
     effect: "bounce",
-    text: "Pi-hole is currently applying your changes...",
+    text: "KestrelPro is currently applying your changes...",
     bg: "rgba(0,0,0,0.7)",
     color: "#fff",
     maxSize: "",

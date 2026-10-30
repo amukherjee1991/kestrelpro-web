@@ -28,7 +28,7 @@ mg.include('scripts/lua/header_authenticated.lp','r')
                             <th>First seen</th>
                             <th>Last Query</th>
                             <th>Number of queries</th>
-                            <th>Uses Pi-hole</th>
+                            <th>Uses KestrelPro</th>
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -41,7 +41,7 @@ mg.include('scripts/lua/header_authenticated.lp','r')
                             <th>First seen</th>
                             <th>Last Query</th>
                             <th>Number of queries</th>
-                            <th>Uses Pi-hole</th>
+                            <th>Uses KestrelPro</th>
                             <th>Action</th>
                         </tr>
                     </tfoot>
@@ -53,7 +53,7 @@ mg.include('scripts/lua/header_authenticated.lp','r')
                         <td class="network-gradient" width="30%">... to ...</td>
                         <td class="network-old" width="15%">24 hours ago</td>
                         <td class="network-older" width="20%">&gt; 24 hours ago</td>
-                        <td class="network-never" width="20%">Device does not use Pi-hole</td>
+                        <td class="network-never" width="20%">Device does not use KestrelPro</td>
                     </tr>
                 </table>
             </div>

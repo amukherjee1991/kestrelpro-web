@@ -100,8 +100,8 @@ mg.include('scripts/lua/header_authenticated.lp','r')
                             <p><strong>List Status:</strong></p>
                             <div>
                                 <span class="fa fa-fw fa-check-circle list-status-1"></span> - List download was successful<br>
-                                <span class="fa fa-fw fa-history list-status-2"></span> - List unchanged upstream, Pi-hole used a local copy<br>
-                                <span class="fa fa-fw fa-exclamation-circle list-status-3"></span> - List unavailable, Pi-hole used a local copy<br>
+                                <span class="fa fa-fw fa-history list-status-2"></span> - List unchanged upstream, KestrelPro used a local copy<br>
+                                <span class="fa fa-fw fa-exclamation-circle list-status-3"></span> - List unavailable, KestrelPro used a local copy<br>
                                 <span class="fa fa-fw fa-times-circle list-status-4"></span> - List unavailable and no local copy of this list is available<br>
                                 <span class="fa fa-fw fa-question-circle list-status-0"></span> - Unknown<br>
                                 <em>(The status icon turns gray when the list is disabled.)</em>

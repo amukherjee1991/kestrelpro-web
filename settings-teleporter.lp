@@ -17,10 +17,10 @@ mg.include('scripts/lua/settings_header.lp','r')
     <div class="col-md-6">
         <div class="box box-warning">
             <div class="box-header with-border">
-                <h3 class="box-title">Export your Pi-hole's configuration</h3>
+                <h3 class="box-title">Export your KestrelPro's configuration</h3>
             </div>
             <div class="box-body">
-                <p><strong>Warning:</strong><br>This archive contains sensitive information about your Pi-hole installation, e.g. your 2FA-TOTP secret (if enabled). Please be careful with this file and do not share it with anyone even if they claim to help you.<br> Your long-term history database <code>pihole-FTL.db</code> must be backed up separately.</p>
+                <p><strong>Warning:</strong><br>This archive contains sensitive information about your KestrelPro installation, e.g. your 2FA-TOTP secret (if enabled). Please be careful with this file and do not share it with anyone even if they claim to help you.<br> Your long-term history database <code>pihole-FTL.db</code> must be backed up separately.</p>
                 <p class='text-danger' id="encryption-warning" style="display: none;"><strong>Warning:</strong><br>You are currently not using an end-to-end encryption. This means that secrets like your 2FA-TOTP secret will be transmitted in plain text. We recommend to use HTTPS when exporting your configuration.</p>
                 <div class="pull-right">
                     <a class="btn btn-app btn-success" id="GETTeleporter" target="_blank">
@@ -40,7 +40,7 @@ mg.include('scripts/lua/settings_header.lp','r')
                     <label for="file">File input</label>
                     <input type="file" name="file" id="file" accept="application/gzip,application/zip">
                     <br>
-                    <p class="help-block">When importing settings from a <em>newer</em> version of Pi-hole, not yet existing settings will be ignored. When importing from an <em>older</em> version of Pi-hole, settings for newer features will be initialized with their default values.</p>
+                    <p class="help-block">When importing settings from a <em>newer</em> version of KestrelPro, not yet existing settings will be ignored. When importing from an <em>older</em> version of KestrelPro, settings for newer features will be initialized with their default values.</p>
                 </div>
                 <div class="form-group">
                     <label for="import-selection">Select what to import</label>
@@ -67,7 +67,7 @@ mg.include('scripts/lua/settings_header.lp','r')
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">×</span></button>
-                <h4 class="modal-title">Importing Pi-hole teleporter file...</h4>
+                <h4 class="modal-title">Importing KestrelPro teleporter file...</h4>
             </div>
             <div class="modal-body">
                 <p>Depending on your network speed, it may take a few moments until the file is uploaded and imported. Please be patient and don't interrupt the process...</p>

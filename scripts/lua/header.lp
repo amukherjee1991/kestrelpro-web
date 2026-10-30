@@ -67,7 +67,7 @@ is_authenticated = mg.request_info.is_authenticated
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Pi-hole <?=hostname?></title>
+    <title>KestrelPro <?=hostname?></title>
     <meta name="csrf-token" content="<?=mg.request_info.csrf_token?>">
 
     <link rel="apple-touch-icon" href="<?=webhome?>img/favicons/apple-touch-icon.png" sizes="180x180">

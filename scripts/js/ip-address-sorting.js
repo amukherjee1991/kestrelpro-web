@@ -9,7 +9,7 @@
 
 // This code has been taken from
 // https://datatables.net/plug-ins/sorting/ip-address
-// and was modified by the Pi-hole team to support
+// and was modified by the KestrelPro team to support
 // CIDR notation and be more robust against invalid
 // input data (like empty IP addresses)
 $.extend($.fn.dataTableExt.oSort, {

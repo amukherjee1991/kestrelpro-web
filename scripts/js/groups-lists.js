@@ -63,7 +63,7 @@ function format(data) {
         <td>Health status:&nbsp;&nbsp;</td><td>${statusText}</td>
       </tr>
       <tr class="dataTables-child">
-        <td>Added to Pi-hole:&nbsp;&nbsp;</td>
+        <td>Added to KestrelPro:&nbsp;&nbsp;</td>
         <td>${utils.datetimeRelative(data.date_added)}&nbsp;(${dateAddedISO})</td>
       </tr>
       <tr class="dataTables-child">
@@ -129,16 +129,16 @@ function setStatusText(data, showdetails = false) {
         statusDetails = ' (<span class="list-status-1">OK</span>)';
         break;
       case 2:
-        statusText = "List unchanged upstream, Pi-hole used a local copy";
+        statusText = "List unchanged upstream, KestrelPro used a local copy";
         statusDetails = ' (<span class="list-status-2">OK</span>)';
         break;
       case 3:
-        statusText = "List unavailable, Pi-hole used a local copy";
+        statusText = "List unavailable, KestrelPro used a local copy";
         statusDetails = ' (<span class="list-status-3">check list</span>)';
         break;
       case 4:
         statusText =
-          "List unavailable, there is no local copy of this list available on your Pi-hole";
+          "List unavailable, there is no local copy of this list available on your KestrelPro";
         statusDetails = ' (<span class="list-status-4">replace list</span>)';
         break;
 

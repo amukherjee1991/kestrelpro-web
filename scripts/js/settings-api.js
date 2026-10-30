@@ -455,7 +455,7 @@ $("#totp_submit").on("click", () => {
 });
 
 $("#button-disable-totp").confirm({
-  text: "Are you sure you want to disable 2FA authentication on your Pi-hole?",
+  text: "Are you sure you want to disable 2FA authentication on your KestrelPro?",
   title: "Confirmation required",
   confirm() {
     // Disable TOTP

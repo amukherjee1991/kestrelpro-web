@@ -13,7 +13,7 @@
             <!-- Sidebar user panel -->
             <div class="user-panel">
                 <div class="pull-left image">
-                    <img class="logo-img" src="<?=webhome?>img/logo.svg" alt="Pi-hole logo" width="60" height="87">
+                    <img class="logo-img" src="<?=webhome?>img/logo.svg" alt="KestrelPro logo" width="60" height="60">
                 </div>
                 <div class="pull-left info">
                     <p>Status</p>
@@ -142,7 +142,7 @@
                         <span>Lists
                             <span class="pull-right-container">
                                 <span class="label label-primary pull-right" id="num_lists" title="Number of subscribed and enabled lists"></span>
-                                <span class="label bg-yellow pull-right" id="num_gravity" title="Total number of domains subscribed by your Pi-hole"></span>
+                                <span class="label bg-yellow pull-right" id="num_gravity" title="Total number of domains subscribed by your KestrelPro"></span>
                             </span>
                         </span>
                     </a>
@@ -256,10 +256,10 @@
                         </span>
                     </a>
                     <ul class="treeview-menu">
-                        <!-- Pi-hole diagnosis -->
+                        <!-- KestrelPro diagnosis -->
                         <li<? if scriptname == 'messages' then ?> class="active"<? end ?>>
                             <a href="<?=webhome?>messages">
-                                <i class="fa fa-fw menu-icon fa-file-medical-alt"></i> <span>Pi-hole diagnosis</span>
+                                <i class="fa fa-fw menu-icon fa-file-medical-alt"></i> <span>KestrelPro diagnosis</span>
                                 <span class="pull-right-container warning-count hidden"></span>
                             </a>
                         </li>
@@ -320,10 +320,10 @@
                 </li>
 
                 <!-- Donate button -->
-                <li class="header text-uppercase">Donate</li>
-                <li class="menu-donate">
-                    <a href="https://pi-hole.net/donate/" rel="noopener noreferrer" target="_blank">
-                        <i class="fas fa-fw menu-icon fa-donate"></i> <span>Donate</span>
+                <li class="header text-uppercase">About</li>
+                <li class="menu-kestrel<? if scriptname == 'kestrel/about' then ?> active<? end ?>">
+                    <a href="<?=webhome?>kestrel/about">
+                        <i class="fa fa-fw menu-icon fa-circle-info"></i> <span>About KestrelPro</span>
                     </a>
                 </li>
             </ul>

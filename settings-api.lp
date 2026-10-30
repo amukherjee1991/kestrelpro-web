@@ -67,7 +67,7 @@ mg.include('scripts/lua/settings_header.lp','r')
                         <div>
                             <input type="checkbox" id="webserver.api.allow_destructive" data-key="webserver.api.allow_destructive">
                             <label for="webserver.api.allow_destructive"><strong>Permit destructive actions via API</strong></label>
-                            <p class="help-block">This will allow clients to perform destructive actions via the API, such as rebooting or shutting down the system Pi-hole is running on.</p>
+                            <p class="help-block">This will allow clients to perform destructive actions via the API, such as rebooting or shutting down the system KestrelPro is running on.</p>
                         </div>
                     </div>
                     <div class="col-lg-12 pt-3">
@@ -146,9 +146,9 @@ mg.include('scripts/lua/settings_header.lp','r')
                             <thead>
                                 <tr>
                                     <td></td>
-                                    <th title="Session ID used internally by our Pi-hole">ID</th>
+                                    <th title="Session ID used internally by our KestrelPro">ID</th>
                                     <th title="Session is still valid (neither expired nor closed)">Valid</th>
-                                    <th title="Connection between client and Pi-hole is end-to-end encrypted">TLS</th>
+                                    <th title="Connection between client and KestrelPro is end-to-end encrypted">TLS</th>
                                     <th title="Session used application password during authentication"><i class="fas fa-robot"></i></th>
                                     <th title="Session used CLI password during authentication"><i class="fas fa-terminal"></i></th>
                                     <th title="Time at which the client created the session">Login at</th>

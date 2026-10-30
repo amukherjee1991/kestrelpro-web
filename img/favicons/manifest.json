@@ -1,6 +1,6 @@
 {
-    "name": "Pi-hole Admin Console",
-    "short_name": "Pi-hole",
+    "name": "KestrelPro Admin Console",
+    "short_name": "KestrelPro",
     "icons": [
         {
             "src": "android-chrome-192x192.png",

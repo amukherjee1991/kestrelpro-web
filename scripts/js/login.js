@@ -16,7 +16,7 @@ function redirect() {
   // Default: Send back to dashboard
   let target = ".";
 
-  // If DNS failure: send to Pi-hole diagnosis messages page
+  // If DNS failure: send to KestrelPro diagnosis messages page
   if ($("#dns-failure-label").is(":visible")) {
     target = "messages";
   }

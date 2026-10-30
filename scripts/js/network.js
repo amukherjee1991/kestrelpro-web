@@ -118,7 +118,7 @@ $(() => {
           iconClasses = "fas fa-question";
         }
       } else {
-        // This client has never sent a query to Pi-hole, color light-red
+        // This client has never sent a query to KestrelPro, color light-red
         color = networkNever;
         iconClasses = "fas fa-times";
       }

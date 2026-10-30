@@ -55,7 +55,7 @@ mg.include('scripts/lua/header_authenticated.lp','r')
                             <li>interface they are connected to (prefaced with a colon, like <code>:eth0</code>).</li>
                         </ol>
                         <p>The first match (from top to down) wins. Note that client recognition by host name or interface recognition as
-                        the two latter may only be available after some time. Furthermore, MAC address recognition only works for devices at most one networking hop away from your Pi-hole.</p>
+                        the two latter may only be available after some time. Furthermore, MAC address recognition only works for devices at most one networking hop away from your KestrelPro.</p>
                     </div>
                 </div>
             </div>
