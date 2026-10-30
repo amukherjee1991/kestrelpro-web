@@ -20,6 +20,13 @@ function fill(s) {
   $("#kp-storm-devices").val(s.storm_devices);
   $("#kp-storm-lookups").val(s.storm_lookups);
   $("#kp-few-shot").prop("checked", Boolean(s.few_shot));
+  $("#kp-list-checks").val(s.list_checks_per_hour);
+  $("#kp-notify-kind").val(s.notify_kind);
+  $("#kp-notify-url").val(s.notify_url);
+  $("#kp-notify-pending").val(s.notify_pending_at);
+  $('input[name="notify-event"]').each((_i, el) => {
+    el.checked = (s.notify_events || []).includes(el.value);
+  });
 
   $('input[name="category"]').each((_i, el) => {
     el.checked = s.block_categories.includes(el.value);
@@ -54,6 +61,13 @@ $(() => {
         .map(d => d.trim().toLowerCase())
         .filter(Boolean),
       few_shot: $("#kp-few-shot").is(":checked"),
+      list_checks_per_hour: Number($("#kp-list-checks").val()),
+      notify_kind: $("#kp-notify-kind").val(),
+      notify_url: $("#kp-notify-url").val().trim(),
+      notify_events: $('input[name="notify-event"]:checked')
+        .map((_i, el) => el.value)
+        .get(),
+      notify_pending_at: Number($("#kp-notify-pending").val()),
       probation_hours: Number($("#kp-probation").val()),
       storm_devices: Number($("#kp-storm-devices").val()),
       storm_lookups: Number($("#kp-storm-lookups").val()),
@@ -61,5 +75,10 @@ $(() => {
     const saved = await kestrel.api("/settings", { method: "POST", body });
     fill({ ...saved, protected_builtin: $("#kp-builtin li").map((_i, el) => el.textContent).get() });
     utils.showAlert("success", "fas fa-check", "Saved", "AI review settings");
+  });
+
+  $("#kp-notify-test").on("click", async () => {
+    await kestrel.api("/notify/test", { method: "POST" });
+    utils.showAlert("success", "fas fa-paper-plane", "Test sent", $("#kp-notify-url").val());
   });
 });

@@ -170,3 +170,23 @@ button.kp-ai {
   font-size: 12px;
   line-height: 1.4;
 }
+
+/* Local evidence chips (engine evidence.py) */
+.kp-evidence {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  margin-top: 4px;
+}
+
+.kp-ev {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 1px 7px;
+  border-radius: 999px;
+  border: 1px solid var(--kp-border, #ddd);
+  color: var(--kp-muted, #666);
+  font-size: 11px;
+  white-space: nowrap;
+}

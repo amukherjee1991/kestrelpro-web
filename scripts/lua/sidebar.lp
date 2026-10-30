@@ -71,6 +71,16 @@
                         <i class="fa fa-fw menu-icon fa-life-ring"></i> <span>Something broke?</span>
                     </a>
                 </li>
+                <li class="menu-kestrel<? if scriptname == 'kestrel/suggestions' then ?> active<? end ?>">
+                    <a href="<?=webhome?>kestrel/suggestions">
+                        <i class="fa fa-fw menu-icon fa-lightbulb"></i>
+                        <span>Suggestions
+                            <span class="pull-right-container">
+                                <span class="label bg-yellow pull-right" id="num_kestrel_suggestions" title="Suggestions waiting for a look"></span>
+                            </span>
+                        </span>
+                    </a>
+                </li>
                 <li class="menu-kestrel<? if scriptname == 'kestrel/accuracy' then ?> active<? end ?>">
                     <a href="<?=webhome?>kestrel/accuracy">
                         <i class="fa fa-fw menu-icon fa-bullseye"></i> <span>Accuracy</span>

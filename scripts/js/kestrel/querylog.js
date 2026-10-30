@@ -118,7 +118,7 @@ globalThis.kestrelQueryLog = (function () {
     const when = utils.datetime(v.judged_at, false, false);
     m.find(".modal-body").html(
       `<p>${kestrel.categoryLabel(v.category)} ${kestrel.statusLabel(v.status, v)} · ${kestrel.percent(v.confidence)} sure</p>` +
-        `<p>${utils.escapeHtml(v.reason || "")}</p>` +
+        `<p>${utils.escapeHtml(v.reason || "")}</p>${kestrel.evidence(v.evidence)}` +
         `<p class="text-muted small">Judged by ${utils.escapeHtml(v.model || "an earlier version")} on ${when}.</p>` +
         '<div id="kp-ai-why"></div>'
     );

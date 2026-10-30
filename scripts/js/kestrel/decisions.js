@@ -57,7 +57,13 @@ function columns() {
   }
 
   cols.push(
-    { title: "Reason", data: "reason", className: "kp-reason", render: $.fn.dataTable.render.text() },
+    {
+      title: "Reason",
+      data: "reason",
+      className: "kp-reason",
+      render: (r, type, row) =>
+        type === "display" ? utils.escapeHtml(r || "") + kestrel.evidence(row.evidence) : r,
+    },
     {
       title: "Devices",
       data: "clients",

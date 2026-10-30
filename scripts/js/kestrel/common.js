@@ -38,6 +38,9 @@ globalThis.kestrel = (function () {
     unblocked: ["Unblocked", "fa-rotate-left"],
     rejected: ["Not blocked", "fa-xmark"],
     probation_reverted: ["Trial block withdrawn", "fa-life-ring"],
+    list_allowed: ["Allowed (list false positive)", "fa-circle-check"],
+    site_blocked: ["Whole site blocked", "fa-sitemap"],
+    site_unblocked: ["Site rule removed", "fa-rotate-left"],
   };
 
   function banner(kind, html) {
@@ -151,6 +154,7 @@ globalThis.kestrel = (function () {
   async function refreshStatus() {
     const s = await api("/status");
     $("#num_kestrel_pending").text(s.pending > 0 ? s.pending : "");
+    $("#num_kestrel_suggestions").text(s.suggestions > 0 ? s.suggestions : "");
     const problems = [];
     if (s.last_error) problems.push(utils.escapeHtml(s.last_error));
     for (const w of s.warnings || []) problems.push(utils.escapeHtml(w));
@@ -171,6 +175,25 @@ globalThis.kestrel = (function () {
     if (problems.length > 0) banner("warning", problems.join("<br>"));
     else banner();
     return s;
+  }
+
+  // Local evidence the model was shown (engine evidence.py), as small chips.
+  function evidence(ev) {
+    if (!ev) return "";
+    const chips = [];
+    if (ev.clockwork_seconds && ev.clockwork_seconds.length > 0) {
+      chips.push(
+        `<span class="kp-ev" title="A device looks it up on a steady clock, as telemetry and tracking beacons do"><i class="fa fa-clock" aria-hidden="true"></i> every ~${ev.clockwork_seconds[0]}\u00A0s</span>`
+      );
+    }
+
+    if (ev.near_blocked >= 0.3) {
+      chips.push(
+        `<span class="kp-ev" title="Share of lookups that came within two seconds of a lookup already blocked as an ad or tracker"><i class="fa fa-link" aria-hidden="true"></i> ${Math.round(ev.near_blocked * 100)}% next to blocked</span>`
+      );
+    }
+
+    return chips.length > 0 ? `<div class="kp-evidence">${chips.join("")}</div>` : "";
   }
 
   async function decide(domain, action) {
@@ -203,6 +226,7 @@ globalThis.kestrel = (function () {
     actionLabel,
     percent,
     devices,
+    evidence,
     refreshStatus,
     decide,
   };

@@ -101,6 +101,52 @@ mg.include('scripts/lua/kestrel_common.lp','r')
     </div>
 </div>
 <div class="row">
+    <div class="col-md-6">
+        <div class="box">
+            <div class="box-header with-border"><h3 class="box-title">Second looks at your block lists</h3></div>
+            <div class="box-body">
+                <div class="form-group">
+                    <label for="kp-list-checks">Blocked domains to re-check per hour (0 = off)</label>
+                    <input type="number" class="form-control" id="kp-list-checks" min="0" max="600">
+                    <p class="help-block">Only while the model has nothing else to do. Ones that look legitimate show up under <a href="<?=webhome?>kestrel/suggestions">Suggestions</a>.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="box">
+            <div class="box-header with-border"><h3 class="box-title">Notifications</h3></div>
+            <div class="box-body">
+                <p class="help-block">Off until you enter an address. Notifications include domain names and go to the address you enter; nothing else leaves your network.</p>
+                <div class="row">
+                    <div class="col-sm-4 form-group">
+                        <label for="kp-notify-kind">Send to</label>
+                        <select class="form-control" id="kp-notify-kind">
+                            <option value="ntfy">ntfy topic</option>
+                            <option value="webhook">Webhook (JSON)</option>
+                        </select>
+                    </div>
+                    <div class="col-sm-8 form-group">
+                        <label for="kp-notify-url">Address</label>
+                        <input type="url" class="form-control" id="kp-notify-url" placeholder="https://ntfy.sh/your-private-topic…" spellcheck="false" autocomplete="off">
+                    </div>
+                </div>
+                <label>Tell me when</label>
+                <div><input type="checkbox" name="notify-event" id="kp-ne-auto" value="auto_blocked"><label for="kp-ne-auto">a domain is blocked automatically</label></div>
+                <div><input type="checkbox" name="notify-event" id="kp-ne-pending" value="pending"><label for="kp-ne-pending">approvals pile up (at most once a day)</label></div>
+                <div><input type="checkbox" name="notify-event" id="kp-ne-trial" value="probation_reverted"><label for="kp-ne-trial">a trial block is withdrawn</label></div>
+                <div><input type="checkbox" name="notify-event" id="kp-ne-list" value="list_false_positive"><label for="kp-ne-list">a block list seems to block something legitimate</label></div>
+                <div class="form-group kp-interval">
+                    <label for="kp-notify-pending">"Pile up" means at least</label>
+                    <input type="number" class="form-control" id="kp-notify-pending" min="1" max="10000">
+                </div>
+                <button type="button" class="btn btn-default btn-sm" id="kp-notify-test"><i class="fa fa-paper-plane" aria-hidden="true"></i> Send Test</button>
+                <span class="text-muted small">Save first; messages are combined and sent at most every 5 minutes.</span>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
     <div class="col-md-12">
         <div class="box">
             <div class="box-header with-border"><h3 class="box-title">Never block</h3></div>

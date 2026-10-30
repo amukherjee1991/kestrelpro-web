@@ -60,3 +60,14 @@ onto it (dropping the old debrand commit), run `tools/debrand.sh`, run
   and where you disagree), with their scripts in `scripts/js/kestrel/`.
 - AI settings: "Learn from my decisions" switch; the model is changed on the Models page.
 - `scripts/lua/sidebar.lp`: three more entries in the KestrelPro block.
+
+## 2026-10-30: P7, evidence, suggestions, notifications
+
+- New page `kestrel-suggestions.lp`: domains the block lists may block by mistake (with the
+  list responsible, Allow / Keep blocked), sites to block as a whole with one rule, and the
+  site-wide rules in place (Remove).
+- Needs approval, Decisions and the Query Log dialog show the local evidence the model was
+  given (steady rhythm, lookups next to blocked ones).
+- AI settings: block-list second looks per hour; Notifications (ntfy or webhook, events,
+  backlog threshold, Send Test).
+- `scripts/lua/sidebar.lp`: Suggestions entry with a count.
