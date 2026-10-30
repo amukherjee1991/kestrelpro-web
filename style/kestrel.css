@@ -31,7 +31,7 @@
 }
 
 .kp-reason {
-  min-width: 14em;
+  min-width: 11em;
 }
 
 .kp-actions {
@@ -112,6 +112,18 @@ button.kp-ai {
   margin: 0 16px 8px 0;
 }
 
-.kp-when {
+.kp-when,
+.kp-conf {
   white-space: nowrap;
+}
+
+/* Decisions has more columns than Needs approval: stack the two pending actions */
+#kp-table[data-mode="decisions"] .kp-actions .btn {
+  display: block;
+  width: 100%;
+  text-align: left;
+}
+
+#kp-table[data-mode="decisions"] .kp-actions .btn + .btn {
+  margin: 4px 0 0;
 }

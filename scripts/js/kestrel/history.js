@@ -49,11 +49,17 @@ $(() => {
         .catch(() => callback({ data: [] }));
     },
     columns: [
-      { title: "Time", data: "at", render: utils.renderTimestamp },
+      { title: "When", data: "at", className: "kp-when", render: utils.renderTimespan },
       { title: "What happened", data: "action", render: (a, type) => (type === "display" ? kestrel.actionLabel(a) : a) },
       { title: "Domain", data: "domain", className: "kp-domain", render: $.fn.dataTable.render.text() },
-      { title: "Category", data: "category", render: (c, type) => (type === "display" ? kestrel.categoryLabel(c) : c) },
-      { title: "Confidence", data: "confidence", render: (c, type) => (type === "display" ? kestrel.percent(c) : c) },
+      {
+        title: "Verdict",
+        data: "category",
+        render: (c, type, row) =>
+          type === "display"
+            ? `${kestrel.categoryLabel(c)} <span class="text-muted kp-conf">${kestrel.percent(row.confidence)}</span>`
+            : c,
+      },
       { title: "Reason", data: "reason", className: "kp-reason", render: $.fn.dataTable.render.text() },
       {
         title: "Devices",

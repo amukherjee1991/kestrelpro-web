@@ -43,14 +43,28 @@ function columns() {
       data: "confidence",
       render: (c, type) => (type === "display" ? kestrel.percent(c) : c),
     },
+  ];
+  // Decisions has a Status column too; fold confidence into the category cell to keep it in its card.
+  if (!review) {
+    cols.splice(1, 2, {
+      title: "Verdict",
+      data: "category",
+      render: (c, type, row) =>
+        type === "display"
+          ? `${kestrel.categoryLabel(c)} <span class="text-muted kp-conf">${kestrel.percent(row.confidence)}</span>`
+          : c,
+    });
+  }
+
+  cols.push(
     { title: "Reason", data: "reason", className: "kp-reason", render: $.fn.dataTable.render.text() },
     {
       title: "Devices",
       data: "clients",
       orderable: false,
       render: (c, type) => (type === "display" ? kestrel.devices(c) : (c || []).map(x => x.name || x.ip).join(" ")),
-    },
-  ];
+    }
+  );
   if (!review) {
     cols.push({
       title: "Status",
