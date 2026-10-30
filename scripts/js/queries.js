@@ -640,6 +640,11 @@ $(() => {
       if (state) state.length = state.length === -1 ? 25 : state.length;
       return state;
     },
+    // kestrelpro:begin AI verdict badges (scripts/js/kestrel/querylog.js)
+    drawCallback() {
+      if (globalThis.kestrelQueryLog) globalThis.kestrelQueryLog.decorate(this.api());
+    },
+    // kestrelpro:end
     rowCallback(row, data) {
       const querystatus = parseQueryStatus(data);
 

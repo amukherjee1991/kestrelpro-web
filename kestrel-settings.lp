@@ -72,6 +72,32 @@ mg.include('scripts/lua/kestrel_common.lp','r')
 <div class="row">
     <div class="col-md-12">
         <div class="box">
+            <div class="box-header with-border"><h3 class="box-title">Safety net for automatic blocks</h3></div>
+            <div class="box-body">
+                <p>A new automatic block is on trial for a while. During the trial it is withdrawn, and the
+                domain goes back to <em>Needs approval</em>, if you unblock another domain of the same site
+                or if several devices keep retrying it (a sign that something broke).</p>
+                <div class="row">
+                    <div class="col-sm-4 form-group">
+                        <label for="kp-probation">Trial period (hours, 0 = off)</label>
+                        <input type="number" class="form-control" id="kp-probation" min="0" max="336">
+                    </div>
+                    <div class="col-sm-4 form-group">
+                        <label for="kp-storm-devices">Devices retrying</label>
+                        <input type="number" class="form-control" id="kp-storm-devices" min="1" max="100">
+                    </div>
+                    <div class="col-sm-4 form-group">
+                        <label for="kp-storm-lookups">Blocked lookups each, within 5 minutes</label>
+                        <input type="number" class="form-control" id="kp-storm-lookups" min="3" max="10000">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <div class="box">
             <div class="box-header with-border"><h3 class="box-title">Never block</h3></div>
             <div class="box-body">
                 <div class="form-group">

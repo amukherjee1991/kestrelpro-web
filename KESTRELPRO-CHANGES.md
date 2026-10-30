@@ -23,3 +23,14 @@ by `tools/debrand.sh`. The original copyright and licence notices are unchanged.
 "debrand" commit on top. To move to a new upstream tag: rebase the KestrelPro commits
 onto it (dropping the old debrand commit), run `tools/debrand.sh`, run
 `tools/check-branding.sh`, and commit the result as the new debrand commit.
+
+## 2026-10-29: P5, safety net and Query Log verdicts
+
+- New page `kestrel-broke.lp` ("Something broke?"): the KestrelPro blocks one device ran
+  into recently, with Unblock and "Unblock and never block".
+- AI review page: Pause / Resume all KestrelPro blocks; "on trial" labels for fresh
+  automatic blocks; a banner on every KestrelPro page while paused.
+- AI settings: trial period and retry-storm thresholds.
+- `queries.lp` and `scripts/js/queries.js` (one marked block each): the Query Log shows
+  an AI badge on domains KestrelPro has judged; clicking it shows the verdict, which list
+  or rule blocked the domain, and one-click actions (`scripts/js/kestrel/querylog.js`).

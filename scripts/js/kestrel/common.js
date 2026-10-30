@@ -37,6 +37,7 @@ globalThis.kestrel = (function () {
     user_blocked: ["Blocked by you", "fa-ban"],
     unblocked: ["Unblocked", "fa-rotate-left"],
     rejected: ["Not blocked", "fa-xmark"],
+    probation_reverted: ["Trial block withdrawn", "fa-life-ring"],
   };
 
   function banner(kind, html) {
@@ -68,6 +69,7 @@ globalThis.kestrel = (function () {
         body: options.body === undefined ? undefined : JSON.stringify(options.body),
       });
     } catch (error) {
+      if (options.quiet) throw error;
       const https = location.protocol === "https:" && !cfg.engineUrl;
       banner(
         "danger",
@@ -82,6 +84,7 @@ globalThis.kestrel = (function () {
     }
 
     if (response.status === 401) {
+      if (options.quiet) throw new Error("unauthorized");
       banner(
         "warning",
         "Your session has expired. <a href='" +
@@ -94,7 +97,7 @@ globalThis.kestrel = (function () {
     const data = await response.json().catch(() => ({}));
     if (!response.ok) {
       const message = data.message || data.error || response.statusText;
-      utils.showAlert("error", "", "KestrelPro", message);
+      if (!options.quiet) utils.showAlert("error", "", "KestrelPro", message);
       throw new Error(message);
     }
 
@@ -106,9 +109,16 @@ globalThis.kestrel = (function () {
     return `<span class="label ${cls} kp-cat">${utils.escapeHtml(category || "")}</span>`;
   }
 
-  function statusLabel(status) {
+  // `row` (optional) adds the trial period of a fresh automatic block.
+  function statusLabel(status, row) {
     const [text, cls] = STATUS_TEXT[status] || [status || "", "label-default"];
-    return `<span class="label ${cls}">${utils.escapeHtml(text)}</span>`;
+    let trial = "";
+    if (row && status === "blocked" && row.probation_until > Date.now() / 1000) {
+      const until = utils.datetime(row.probation_until, false, false);
+      trial = ` <span class="label label-default" title="Withdrawn automatically if something breaks before ${until}">on trial</span>`;
+    }
+
+    return `<span class="label ${cls}">${utils.escapeHtml(text)}</span>${trial}`;
   }
 
   function actionLabel(action) {
@@ -144,13 +154,21 @@ globalThis.kestrel = (function () {
       problems.push("The model is running on the CPU, not the graphics card, so reviews are slow.");
     }
 
+    if (s.safety && s.safety.paused) {
+      problems.unshift(
+        "<strong>KestrelPro blocks are paused.</strong> Nothing KestrelPro added is being blocked, " +
+          "and new suggestions wait for approval. " +
+          `<a href="${document.body.dataset.webhome}kestrel">Resume on the AI review page</a>.`
+      );
+    }
+
     if (problems.length > 0) banner("warning", problems.join("<br>"));
     else banner();
     return s;
   }
 
   async function decide(domain, action) {
-    await api("/decisions/" + encodeURIComponent(domain), { method: "POST", body: { action } });
+    const r = await api("/decisions/" + encodeURIComponent(domain), { method: "POST", body: { action } });
     const done = {
       block: "Blocked",
       approve: "Blocked",
@@ -158,6 +176,16 @@ globalThis.kestrel = (function () {
       reject: "Won't be blocked",
     }[action];
     utils.showAlert("success", "fas fa-check", done, domain);
+    if (r.reverted && r.reverted.length > 0) {
+      utils.showAlert(
+        "info",
+        "fas fa-life-ring",
+        "Also sent back for review",
+        r.reverted.join(", ") + " (same site, still on trial)"
+      );
+    }
+
+    return r;
   }
 
   return {

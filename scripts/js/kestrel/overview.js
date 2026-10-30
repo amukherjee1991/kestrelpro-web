@@ -18,10 +18,26 @@ function stateLine(s) {
   if (s.running) doing = "Reviewing now";
   else if (s.queued > 0) doing = s.queued + " domain(s) queued";
   const last = s.last_finished ? "last checked " + utils.datetimeRelative(s.last_finished) : "not run yet";
+  const trial =
+    s.safety.on_probation > 0 ? ` ${s.safety.on_probation} automatic block(s) on trial.` : "";
+  const pauseButton = s.safety.paused
+    ? '<button type="button" class="btn btn-success btn-xs" id="kp-pause" data-act="resume"><i class="fa fa-play"></i> Resume KestrelPro blocks</button>'
+    : '<button type="button" class="btn btn-warning btn-xs" id="kp-pause" data-act="pause" title="Turns off every block KestrelPro added, without deleting anything"><i class="fa fa-pause"></i> Pause KestrelPro blocks</button>';
   $("#kp-state").html(
-    `<strong>${mode}</strong> mode, reviewing ${cadence}. ${doing}, ${last}.` +
-      ' <button type="button" class="btn btn-default btn-xs" id="kp-run"><i class="fa fa-play"></i> Check now</button>'
+    `<strong>${mode}</strong> mode, reviewing ${cadence}. ${doing}, ${last}.${trial}` +
+      ' <button type="button" class="btn btn-default btn-xs" id="kp-run"><i class="fa fa-play"></i> Check now</button>' +
+      pauseButton
   );
+  $("#kp-pause").on("click", async function () {
+    const act = $(this).data("act");
+    if (act === "pause" && !confirm("Turn off every block KestrelPro added? Nothing is deleted; Resume turns them back on.")) {
+      return;
+    }
+
+    const r = await kestrel.api("/" + act, { method: "POST" });
+    utils.showAlert("success", "fas fa-check", act === "pause" ? "Paused" : "Resumed", `${r.entries} KestrelPro block(s)`);
+    load();
+  });
   $("#kp-run").on("click", async () => {
     await kestrel.api("/run", { method: "POST" });
     utils.showAlert("info", "", "Check started", "");
@@ -93,7 +109,7 @@ function recent(rows) {
   for (const r of rows.slice(0, 8)) {
     body.append(
       `<tr><td class="kp-domain">${utils.escapeHtml(r.domain)}</td><td>${kestrel.categoryLabel(r.category)}</td>` +
-        `<td>${kestrel.statusLabel(r.status)}</td><td class="hidden-xs kp-when">${utils.datetime(r.updated_at, false, true)}</td></tr>`
+        `<td>${kestrel.statusLabel(r.status, r)}</td><td class="hidden-xs kp-when">${utils.datetime(r.updated_at, false, true)}</td></tr>`
     );
   }
 }

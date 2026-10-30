@@ -16,6 +16,9 @@ function fill(s) {
   $("#kp-model").val(s.model);
   $("#kp-interval").val(Math.round(s.interval_seconds / 60));
   $("#kp-protected").val((s.protected_extra || []).join("\n"));
+  $("#kp-probation").val(s.probation_hours);
+  $("#kp-storm-devices").val(s.storm_devices);
+  $("#kp-storm-lookups").val(s.storm_lookups);
 
   $('input[name="category"]').each((_i, el) => {
     el.checked = s.block_categories.includes(el.value);
@@ -50,6 +53,9 @@ $(() => {
         .map(d => d.trim().toLowerCase())
         .filter(Boolean),
       model: $("#kp-model").val().trim(),
+      probation_hours: Number($("#kp-probation").val()),
+      storm_devices: Number($("#kp-storm-devices").val()),
+      storm_lookups: Number($("#kp-storm-lookups").val()),
     };
     const saved = await kestrel.api("/settings", { method: "POST", body });
     fill({ ...saved, protected_builtin: $("#kp-builtin li").map((_i, el) => el.textContent).get() });

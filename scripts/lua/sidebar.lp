@@ -66,6 +66,11 @@
                         <i class="fa fa-fw menu-icon fa-clock-rotate-left"></i> <span>History</span>
                     </a>
                 </li>
+                <li class="menu-kestrel<? if scriptname == 'kestrel/broke' then ?> active<? end ?>">
+                    <a href="<?=webhome?>kestrel/broke">
+                        <i class="fa fa-fw menu-icon fa-life-ring"></i> <span>Something broke?</span>
+                    </a>
+                </li>
                 <li class="menu-kestrel<? if scriptname == 'kestrel/settings' then ?> active<? end ?>">
                     <a href="<?=webhome?>kestrel/settings">
                         <i class="fa fa-fw menu-icon fa-sliders"></i> <span>AI settings</span>

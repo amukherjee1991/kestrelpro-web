@@ -52,7 +52,11 @@ function columns() {
     },
   ];
   if (!review) {
-    cols.push({ title: "Status", data: "status", render: (s, type) => (type === "display" ? kestrel.statusLabel(s) : s) });
+    cols.push({
+      title: "Status",
+      data: "status",
+      render: (s, type, row) => (type === "display" ? kestrel.statusLabel(s, row) : s),
+    });
   }
 
   cols.push(
