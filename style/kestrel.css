@@ -1,0 +1,89 @@
+/* KestrelPro pages. Colours come from the active theme wherever possible, so light,
+ * dark and the other themes keep working; only KestrelPro's own accent is fixed.
+ * This file is copyright under the latest version of the EUPL. */
+
+:root {
+  --kp-accent: #b4532a;
+}
+
+.kp-banner {
+  margin-bottom: 15px;
+}
+
+.kp-cat {
+  text-transform: capitalize;
+}
+
+.label.kp-label-malicious {
+  background-color: #6b1d1d;
+  color: #fff;
+}
+
+.kp-device {
+  white-space: nowrap;
+}
+
+.kp-domain {
+  font-family: var(--bs-font-monospace, monospace);
+  word-break: break-all;
+}
+
+.kp-reason {
+  min-width: 14em;
+}
+
+.kp-actions {
+  white-space: nowrap;
+}
+
+.kp-actions .btn + .btn {
+  margin-left: 4px;
+}
+
+.kp-statusline {
+  margin: -5px 0 15px;
+  color: inherit;
+  opacity: 0.8;
+}
+
+.kp-statusline .btn {
+  margin-left: 8px;
+}
+
+.small-box.kp-accent {
+  background-color: var(--kp-accent) !important;
+  color: #fff !important;
+}
+
+.kp-chart {
+  position: relative;
+  height: 260px;
+}
+
+.kp-summary .description-header {
+  font-size: 22px;
+}
+
+.kp-filters .form-group {
+  margin-right: 12px;
+}
+
+.kp-settings .help-block {
+  margin-bottom: 0;
+}
+
+.kp-settings textarea {
+  font-family: var(--bs-font-monospace, monospace);
+}
+
+.kp-builtin {
+  columns: 3 12em;
+  font-size: 90%;
+}
+
+.kp-about-logo {
+  width: 72px;
+  height: 72px;
+  float: left;
+  margin: 0 16px 8px 0;
+}

@@ -39,6 +39,40 @@
                     </a>
                 </li>
 
+                <!-- kestrelpro:begin sidebar -->
+                <li class="header text-uppercase">KestrelPro</li>
+                <li class="menu-kestrel<? if scriptname == 'kestrel' then ?> active<? end ?>">
+                    <a href="<?=webhome?>kestrel">
+                        <i class="fa fa-fw menu-icon fa-crow"></i> <span>AI review</span>
+                    </a>
+                </li>
+                <li class="menu-kestrel<? if scriptname == 'kestrel/review' then ?> active<? end ?>">
+                    <a href="<?=webhome?>kestrel/review">
+                        <i class="fa fa-fw menu-icon fa-list-check"></i>
+                        <span>Needs approval
+                            <span class="pull-right-container">
+                                <span class="label bg-yellow pull-right" id="num_kestrel_pending" title="Suggested blocks waiting for approval"></span>
+                            </span>
+                        </span>
+                    </a>
+                </li>
+                <li class="menu-kestrel<? if scriptname == 'kestrel/decisions' then ?> active<? end ?>">
+                    <a href="<?=webhome?>kestrel/decisions">
+                        <i class="fa fa-fw menu-icon fa-gavel"></i> <span>Decisions</span>
+                    </a>
+                </li>
+                <li class="menu-kestrel<? if scriptname == 'kestrel/history' then ?> active<? end ?>">
+                    <a href="<?=webhome?>kestrel/history">
+                        <i class="fa fa-fw menu-icon fa-clock-rotate-left"></i> <span>History</span>
+                    </a>
+                </li>
+                <li class="menu-kestrel<? if scriptname == 'kestrel/settings' then ?> active<? end ?>">
+                    <a href="<?=webhome?>kestrel/settings">
+                        <i class="fa fa-fw menu-icon fa-sliders"></i> <span>AI settings</span>
+                    </a>
+                </li>
+                <!-- kestrelpro:end -->
+
                 <li class="header text-uppercase">Group Management</li>
                 <!-- Group Management -->
                 <li class="menu-group<? if scriptname == 'groups' then ?> active<? end ?>">
