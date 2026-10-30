@@ -28,7 +28,16 @@ function devicesCell(g) {
 }
 
 function row(g) {
-  const name = `<strong>${utils.escapeHtml(g.name)}</strong>${g.enabled ? "" : ' <span class="label label-default">disabled</span>'}`;
+  // A device only in this group gets no block lists unless they're assigned to it as well.
+  const noLists =
+    !g.default && g.block_lists === 0
+      ? `<div class="kp-group-warning"><i class="fa fa-triangle-exclamation" aria-hidden="true"></i> No block lists. ` +
+        `Devices only in this group skip your lists; <a href="${document.body.dataset.webhome}groups/lists">assign the lists</a> ` +
+        "to it too, or keep the devices in Default as well.</div>"
+      : "";
+  const name =
+    `<strong>${utils.escapeHtml(g.name)}</strong>${g.enabled ? "" : ' <span class="label label-default">disabled</span>'}` +
+    noLists;
   if (g.default) {
     const e = g.effective;
     return (

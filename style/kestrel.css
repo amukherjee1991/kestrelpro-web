@@ -162,3 +162,11 @@ button.kp-ai {
 .kp-pull .progress {
   margin: 6px 0 0;
 }
+
+.kp-group-warning {
+  margin-top: 6px;
+  max-width: 22em;
+  color: var(--kp-warning, #9a5a00);
+  font-size: 12px;
+  line-height: 1.4;
+}
