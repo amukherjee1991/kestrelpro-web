@@ -52,7 +52,7 @@ mg.include('scripts/lua/kestrel_common.lp','r')
             <div class="box-header with-border"><h3 class="box-title">Site-wide rules in place</h3></div>
             <div class="box-body table-responsive no-padding">
                 <table class="table" id="kp-sg-rules">
-                    <thead><tr><th>Site</th><th>Rule</th><th class="kp-when">Added</th><th></th></tr></thead>
+                    <thead><tr><th>Site and rule</th><th class="kp-when">Added</th><th></th></tr></thead>
                     <tbody></tbody>
                 </table>
             </div>

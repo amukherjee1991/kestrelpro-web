@@ -65,11 +65,11 @@ function render(r) {
   }
 
   const rules = $("#kp-sg-rules tbody").empty();
-  if (r.rules.length === 0) rules.append('<tr><td colspan="4" class="text-muted">None yet.</td></tr>');
+  if (r.rules.length === 0) rules.append('<tr><td colspan="3" class="text-muted">None yet.</td></tr>');
   for (const rule of r.rules) {
     const site = esc(rule.site);
     rules.append(
-      `<tr><td><strong>${site}</strong></td><td><code>${esc(rule.regex)}</code></td>` +
+      `<tr><td><strong>${site}</strong><div><code>${esc(rule.regex)}</code></div></td>` +
         `<td class="kp-when">${utils.datetime(rule.added_at, false, true)}</td>` +
         `<td class="kp-actions">${btn(`data-site="unblock" data-name="${site}"`, "default", "rotate-left", "Remove")}</td></tr>`
     );

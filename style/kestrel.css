@@ -190,3 +190,20 @@ button.kp-ai {
   font-size: 11px;
   white-space: nowrap;
 }
+
+/* Suggestions: the site table sits in a narrower column; stack its two actions */
+#kp-sg-sites .kp-actions .btn,
+#kp-sg-false .kp-actions .btn {
+  display: block;
+  width: 100%;
+  text-align: left;
+}
+
+#kp-sg-sites .kp-actions .btn + .btn,
+#kp-sg-false .kp-actions .btn + .btn {
+  margin: 4px 0 0;
+}
+
+.kp-list-src code {
+  word-break: break-all;
+}
