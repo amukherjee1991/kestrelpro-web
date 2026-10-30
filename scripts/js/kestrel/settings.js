@@ -77,8 +77,15 @@ $(() => {
     utils.showAlert("success", "fas fa-check", "Saved", "AI review settings");
   });
 
-  $("#kp-notify-test").on("click", async () => {
-    await kestrel.api("/notify/test", { method: "POST" });
-    utils.showAlert("success", "fas fa-paper-plane", "Test sent", $("#kp-notify-url").val());
+  $("#kp-notify-test").on("click", async function () {
+    const btn = $(this);
+    const label = btn.html();
+    btn.prop("disabled", true).html('<i class="fa fa-spinner fa-spin" aria-hidden="true"></i> Sending…');
+    try {
+      await kestrel.api("/notify/test", { method: "POST" });
+      utils.showAlert("success", "fas fa-paper-plane", "Test sent", $("#kp-notify-url").val());
+    } finally {
+      btn.prop("disabled", false).html(label);
+    }
   });
 });
