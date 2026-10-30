@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # KestrelPro: fail if any Pi-hole mark is left in the user-visible admin UI.
-# Allowed: copyright/licence headers, kestrel-about.lp (origin statement), vendor/,
+# Allowed: copyright/licence headers and origin notes ("a modified version of Pi-hole ..."), kestrel-about.lp (origin statement), vendor/,
 # lowercase identifiers and URLs (pihole, pi-hole.net), lines marked kestrelpro:keep.
 #
 # This file is copyright under the latest version of the EUPL.
@@ -11,7 +11,7 @@ fail=0
 mapfile -t files < <(git ls-files '*.lp' 'scripts/js/*.js' 'scripts/js/**/*.js' 'img/favicons/manifest.json' \
     | grep -v -e '^vendor/' -e '^kestrel-about\.lp$' | sort -u)
 if hits=$(grep -n -E 'Pi-hole|Pi-<(strong|b)>hole|P<strong>h</strong>' "${files[@]}" \
-          | grep -v -E 'Pi-hole: A black hole|Pi-hole, LLC|kestrelpro:keep'); then
+          | grep -v -E 'Pi-hole: A black hole|Pi-hole, LLC|modified version of Pi-hole|kestrelpro:keep'); then
     echo "Pi-hole name in user-visible text:"
     echo "${hits}"
     fail=1

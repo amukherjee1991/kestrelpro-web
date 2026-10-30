@@ -57,7 +57,7 @@ perl -0 -i -pe 's{<strong><a href="https://pi-hole\.net/donate/"[^>]*>.*?</a></s
 # "your Pi-hole", "the Pi-hole DHCP server", page titles, the web app manifest ...
 mapfile -t files < <(git ls-files '*.lp' 'scripts/js/*.js' 'img/favicons/manifest.json' \
     | grep -v -e '^vendor/' -e '^kestrel-about\.lp$')
-perl -i -pe 'next if /Pi-hole: A black hole|Pi-hole, LLC|kestrelpro:keep/;
+perl -i -pe 'next if /Pi-hole: A black hole|Pi-hole, LLC|modified version of Pi-hole|kestrelpro:keep/;
              s/\bPi-holes\b/KestrelPro servers/g;
              s/Pi-hole/KestrelPro/g' "${files[@]}"
 
