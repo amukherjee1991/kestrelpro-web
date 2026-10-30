@@ -118,7 +118,13 @@ globalThis.kestrel = (function () {
       trial = ` <span class="label label-default" title="Withdrawn automatically if something breaks before ${until}">on trial</span>`;
     }
 
-    return `<span class="label ${cls}">${utils.escapeHtml(text)}</span>${trial}`;
+    let scope = "";
+    if (row && row.block_group_names && row.block_group_names.length > 0 && status === "blocked") {
+      const names = row.block_group_names.map(n => utils.escapeHtml(n)).join(", ");
+      scope = ` <span class="label label-default" title="Blocked for devices in ${names} only, by their device policy">${names} only</span>`;
+    }
+
+    return `<span class="label ${cls}">${utils.escapeHtml(text)}</span>${scope}${trial}`;
   }
 
   function actionLabel(action) {
