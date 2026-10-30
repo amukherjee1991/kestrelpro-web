@@ -58,7 +58,7 @@ mg.include('scripts/lua/kestrel_common.lp','r')
 </div>
 
 <div class="row">
-    <div class="col-md-6">
+    <div class="col-md-5">
         <div class="box">
             <div class="box-header with-border">
                 <h3 class="box-title">What it has seen</h3>
@@ -68,7 +68,7 @@ mg.include('scripts/lua/kestrel_common.lp','r')
             </div>
         </div>
     </div>
-    <div class="col-md-6">
+    <div class="col-md-7">
         <div class="box">
             <div class="box-header with-border">
                 <h3 class="box-title">Recently flagged</h3>
