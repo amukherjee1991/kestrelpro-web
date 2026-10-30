@@ -27,7 +27,7 @@ onto it (dropping the old debrand commit), run `tools/debrand.sh`, run
 ## 2026-10-29: P5, safety net and Query Log verdicts
 
 - New page `kestrel-broke.lp` ("Something broke?"): the KestrelPro blocks one device ran
-  into recently, with Unblock and "Unblock and never block".
+  into recently, with Unblock and "Never block" (unblock and add to the Never block list).
 - AI review page: Pause / Resume all KestrelPro blocks; "on trial" labels for fresh
   automatic blocks; a banner on every KestrelPro page while paused.
 - AI settings: trial period and retry-storm thresholds.

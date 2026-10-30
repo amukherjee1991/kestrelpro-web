@@ -19,7 +19,7 @@ function row(b) {
     `<td>${kestrel.statusLabel(b.status, b)}${disabled}</td>` +
     '<td class="kp-actions">' +
     `<button type="button" class="btn btn-success btn-xs" data-domain="${d}" data-protect="0"><i class="fa fa-rotate-left"></i> Unblock</button>` +
-    `<button type="button" class="btn btn-default btn-xs" data-domain="${d}" data-protect="1" title="Unblock, and add it to Never block"><i class="fa fa-shield-halved"></i> Unblock and never block</button>` +
+    `<button type="button" class="btn btn-default btn-xs" data-domain="${d}" data-protect="1" title="Unblock it, and add it to Never block so it is never blocked again"><i class="fa fa-shield-halved"></i> Never block</button>` +
     "</td></tr>"
   );
 }
