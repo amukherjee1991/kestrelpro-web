@@ -877,6 +877,10 @@ table.dataTable a,
   border-radius: 999px;
   box-shadow: none;
 }
+.progress-bar {
+  background-color: var(--kp-accent);
+  box-shadow: none;
+}
 .description-block > .description-text {
   color: var(--kp-muted);
   font-size: 12px;

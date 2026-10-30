@@ -127,3 +127,38 @@ button.kp-ai {
 #kp-table[data-mode="decisions"] .kp-actions .btn + .btn {
   margin: 4px 0 0;
 }
+
+/* Device policies */
+.kp-policies select.form-control {
+  min-width: 11em;
+}
+
+.kp-conf-input {
+  width: 7.5em;
+}
+
+.kp-kinds {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2px 12px;
+  margin-top: 4px;
+}
+
+.kp-kind {
+  font-weight: 400;
+  margin: 0;
+  white-space: nowrap;
+}
+
+.kp-kind-own {
+  font-weight: 600;
+}
+
+/* Models */
+.kp-pull + .kp-pull {
+  margin-top: 10px;
+}
+
+.kp-pull .progress {
+  margin: 6px 0 0;
+}

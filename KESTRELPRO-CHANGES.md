@@ -51,3 +51,12 @@ onto it (dropping the old debrand commit), run `tools/debrand.sh`, run
 - Removed upstream's `.github/` (CI workflows, scheduled stale bots, dependabot, issue
   templates, CODEOWNERS) and `CONTRIBUTING.md`: they automate the upstream project, not this one.
 - `README.md` replaced with a KestrelPro one. `LICENSE` is unchanged.
+
+## 2026-10-30: P6, per-device policies, models, accuracy
+
+- New pages: `kestrel-policies.lp` (Device policies: a KestrelPro policy per group),
+  `kestrel-models.lp` (installed models, download with progress, use and pin, delete,
+  benchmark), `kestrel-accuracy.lp` (agreement with your decisions, by category and model,
+  and where you disagree), with their scripts in `scripts/js/kestrel/`.
+- AI settings: "Learn from my decisions" switch; the model is changed on the Models page.
+- `scripts/lua/sidebar.lp`: three more entries in the KestrelPro block.

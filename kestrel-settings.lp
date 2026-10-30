@@ -50,9 +50,14 @@ mg.include('scripts/lua/kestrel_common.lp','r')
             <div class="box-body">
                 <div class="form-group">
                     <label for="kp-model">Model</label>
-                    <input type="text" class="form-control" id="kp-model" placeholder="gemma4:12b">
-                    <p class="help-block">Any Ollama model that supports structured JSON output. Pull it first: <code>ollama pull &lt;model&gt;</code>.</p>
+                    <input type="text" class="form-control" id="kp-model" placeholder="gemma4:12b" readonly>
+                    <p class="help-block">Change it on the <a href="<?=webhome?>kestrel/models">Models</a> page, which also downloads, pins and benchmarks models.</p>
                 </div>
+                <div>
+                    <input type="checkbox" id="kp-few-shot">
+                    <label for="kp-few-shot"><strong>Learn from my decisions</strong>: show the model a few of your recent Block / Don't block choices as examples</label>
+                </div>
+                <hr>
                 <div>
                     <input type="radio" name="cadence" id="kp-cadence-realtime" value="realtime">
                     <label for="kp-cadence-realtime"><strong>Real time</strong>: new domains are judged within about 15 seconds</label>

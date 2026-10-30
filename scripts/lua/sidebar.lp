@@ -71,6 +71,21 @@
                         <i class="fa fa-fw menu-icon fa-life-ring"></i> <span>Something broke?</span>
                     </a>
                 </li>
+                <li class="menu-kestrel<? if scriptname == 'kestrel/accuracy' then ?> active<? end ?>">
+                    <a href="<?=webhome?>kestrel/accuracy">
+                        <i class="fa fa-fw menu-icon fa-bullseye"></i> <span>Accuracy</span>
+                    </a>
+                </li>
+                <li class="menu-kestrel<? if scriptname == 'kestrel/models' then ?> active<? end ?>">
+                    <a href="<?=webhome?>kestrel/models">
+                        <i class="fa fa-fw menu-icon fa-microchip"></i> <span>Models</span>
+                    </a>
+                </li>
+                <li class="menu-kestrel<? if scriptname == 'kestrel/policies' then ?> active<? end ?>">
+                    <a href="<?=webhome?>kestrel/policies">
+                        <i class="fa fa-fw menu-icon fa-users-gear"></i> <span>Device policies</span>
+                    </a>
+                </li>
                 <li class="menu-kestrel<? if scriptname == 'kestrel/settings' then ?> active<? end ?>">
                     <a href="<?=webhome?>kestrel/settings">
                         <i class="fa fa-fw menu-icon fa-sliders"></i> <span>AI settings</span>

@@ -19,6 +19,7 @@ function fill(s) {
   $("#kp-probation").val(s.probation_hours);
   $("#kp-storm-devices").val(s.storm_devices);
   $("#kp-storm-lookups").val(s.storm_lookups);
+  $("#kp-few-shot").prop("checked", Boolean(s.few_shot));
 
   $('input[name="category"]').each((_i, el) => {
     el.checked = s.block_categories.includes(el.value);
@@ -52,7 +53,7 @@ $(() => {
         .split(/[\s,]+/)
         .map(d => d.trim().toLowerCase())
         .filter(Boolean),
-      model: $("#kp-model").val().trim(),
+      few_shot: $("#kp-few-shot").is(":checked"),
       probation_hours: Number($("#kp-probation").val()),
       storm_devices: Number($("#kp-storm-devices").val()),
       storm_lookups: Number($("#kp-storm-lookups").val()),
