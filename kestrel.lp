@@ -76,7 +76,7 @@ mg.include('scripts/lua/kestrel_common.lp','r')
             </div>
             <div class="box-body table-responsive no-padding">
                 <table class="table table-hover" id="kp-recent">
-                    <thead><tr><th>Domain</th><th>Category</th><th>Status</th><th class="hidden-xs">When</th></tr></thead>
+                    <thead><tr><th>Domain</th><th>Category</th><th>Status</th><th class="hidden-xs kp-when">When</th></tr></thead>
                     <tbody><tr><td colspan="4" class="text-muted">Loading…</td></tr></tbody>
                 </table>
             </div>
