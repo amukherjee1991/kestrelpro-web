@@ -28,8 +28,9 @@ globalThis.kestrelQueryLog = (function () {
           ? "label-warning"
           : "label-default";
     return (
-      ` <span class="label ${cls} kp-ai" role="button" tabindex="0" data-domain="${utils.escapeHtml(v.domain)}"` +
-      ` title="${utils.escapeHtml(title)}"><i class="fa fa-crow"></i> ${utils.escapeHtml(v.category)}</span>`
+      `<button type="button" class="label ${cls} kp-ai" data-domain="${utils.escapeHtml(v.domain)}"` +
+      ` title="${utils.escapeHtml(title)}" aria-label="AI review of ${utils.escapeHtml(v.domain)}: ${utils.escapeHtml(v.category)}">` +
+      `<i class="fa fa-crow" aria-hidden="true"></i> ${utils.escapeHtml(v.category)}</button>`
     );
   }
 
@@ -139,8 +140,7 @@ globalThis.kestrelQueryLog = (function () {
   function bind(table) {
     if (bound) return;
     bound = true;
-    $(table.table().body()).on("click keydown", ".kp-ai", function (event) {
-      if (event.type === "keydown" && event.key !== "Enter" && event.key !== " ") return;
+    $(table.table().body()).on("click", ".kp-ai", function (event) {
       event.preventDefault();
       event.stopPropagation();
       open($(this).data("domain"));

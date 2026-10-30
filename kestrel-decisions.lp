@@ -25,7 +25,7 @@ mg.include('scripts/lua/kestrel_common.lp','r')
                 <form class="form-inline" id="kp-block-form" autocomplete="off">
                     <div class="form-group">
                         <label class="sr-only" for="kp-block-domain">Domain to block</label>
-                        <input type="text" class="form-control" id="kp-block-domain" placeholder="Block a domain, e.g. ads.example.com" size="36">
+                        <input type="text" class="form-control" id="kp-block-domain" placeholder="Block a domain, e.g. ads.example.com…" spellcheck="false" autocomplete="off" size="36">
                     </div>
                     <button type="submit" class="btn btn-danger"><i class="fa fa-ban"></i> Block</button>
                 </form>

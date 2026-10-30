@@ -1,0 +1,47 @@
+/* KestrelPro: dark tokens for the modern skin (kestrelpro.css).
+ * Loaded for default-dark and default-darker, and for default-auto when the system is dark.
+ * This file is copyright under the latest version of the EUPL. */
+
+:root {
+  color-scheme: dark;
+  --kp-bg: #0d0c0b;
+  --kp-surface: #161514;
+  --kp-surface-2: #1e1c1b;
+  --kp-surface-3: #2a2826;
+  --kp-border: #292624;
+  --kp-border-strong: #3a3633;
+  --kp-text: #f3f1ee;
+  --kp-text-2: #d6d2cd;
+  --kp-muted: #a39d96;
+  --kp-faint: #6f6a64;
+  --kp-accent: #e0763f;
+  --kp-accent-hover: #ea8956;
+  --kp-accent-text: #1a0d06;
+  --kp-accent-soft: rgba(224, 118, 63, 0.14);
+  --kp-accent-ring: rgba(224, 118, 63, 0.35);
+  --kp-success: #4ade80;
+  --kp-success-soft: rgba(74, 222, 128, 0.12);
+  --kp-warning: #fbbf24;
+  --kp-warning-soft: rgba(251, 191, 36, 0.12);
+  --kp-danger: #f87171;
+  --kp-danger-soft: rgba(248, 113, 113, 0.13);
+  --kp-info: #60a5fa;
+  --kp-info-soft: rgba(96, 165, 250, 0.13);
+  --kp-violet: #a78bfa;
+  --kp-violet-soft: rgba(167, 139, 250, 0.13);
+  --kp-grid: #24221f;
+  --kp-shadow-sm: none;
+  --kp-shadow: none;
+  --kp-shadow-lg: 0 16px 48px rgba(0, 0, 0, 0.55), 0 0 0 1px rgba(255, 255, 255, 0.03);
+  --kp-backdrop: rgba(0, 0, 0, 0.6);
+}
+
+/* Solid buttons keep dark text on the lighter dark-mode colours */
+.btn-danger,
+.btn-success,
+.btn-warning,
+.btn-danger:hover,
+.btn-success:hover,
+.btn-warning:hover {
+  color: #0d0c0b;
+}

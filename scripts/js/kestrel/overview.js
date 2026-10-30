@@ -21,12 +21,13 @@ function stateLine(s) {
   const trial =
     s.safety.on_probation > 0 ? ` ${s.safety.on_probation} automatic block(s) on trial.` : "";
   const pauseButton = s.safety.paused
-    ? '<button type="button" class="btn btn-success btn-xs" id="kp-pause" data-act="resume"><i class="fa fa-play"></i> Resume KestrelPro blocks</button>'
-    : '<button type="button" class="btn btn-warning btn-xs" id="kp-pause" data-act="pause" title="Turns off every block KestrelPro added, without deleting anything"><i class="fa fa-pause"></i> Pause KestrelPro blocks</button>';
+    ? '<button type="button" class="btn btn-primary btn-sm" id="kp-pause" data-act="resume"><i class="fa fa-play" aria-hidden="true"></i> Resume KestrelPro Blocks</button>'
+    : '<button type="button" class="btn btn-default btn-sm" id="kp-pause" data-act="pause" title="Turns off every block KestrelPro added, without deleting anything"><i class="fa fa-pause" aria-hidden="true"></i> Pause KestrelPro Blocks</button>';
   $("#kp-state").html(
-    `<strong>${mode}</strong> mode, reviewing ${cadence}. ${doing}, ${last}.${trial}` +
-      ' <button type="button" class="btn btn-default btn-xs" id="kp-run"><i class="fa fa-play"></i> Check now</button>' +
-      pauseButton
+    `<span class="kp-state-text"><strong>${mode}</strong> mode, reviewing ${cadence}. ${doing}, ${last}.${trial}</span>` +
+      '<span class="kp-state-actions"><button type="button" class="btn btn-default btn-sm" id="kp-run"><i class="fa fa-rotate" aria-hidden="true"></i> Check Now</button>' +
+      pauseButton +
+      "</span>"
   );
   $("#kp-pause").on("click", async function () {
     const act = $(this).data("act");
@@ -69,12 +70,14 @@ function drawCategories(charts) {
   const reviewed = CATEGORIES.map(c => charts.reviewed_by_category[c] || 0);
   const flagged = CATEGORIES.map(c => charts.flagged_by_category[c] || 0);
   const ticks = utils.getCSSval("graphs-ticks", "color");
+  const css = getComputedStyle(document.documentElement);
+  const token = (name, fallback) => css.getPropertyValue(name).trim() || fallback;
   const grid = utils.getCSSval("graphs-grid", "background-color");
   const data = {
     labels: CATEGORIES.map(c => c[0].toUpperCase() + c.slice(1)),
     datasets: [
-      { label: "Reviewed", data: reviewed, backgroundColor: "rgba(54, 127, 169, 0.75)" },
-      { label: "Flagged", data: flagged, backgroundColor: "rgba(180, 83, 42, 0.9)" },
+      { label: "Reviewed", data: reviewed, backgroundColor: token("--kp-border-strong", "rgba(120, 120, 120, 0.5)"), borderRadius: 4 },
+      { label: "Flagged", data: flagged, backgroundColor: token("--kp-accent", "#b4532a"), borderRadius: 4 },
     ],
   };
   if (categoryChart) {

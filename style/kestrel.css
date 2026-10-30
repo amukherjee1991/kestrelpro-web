@@ -2,10 +2,6 @@
  * dark and the other themes keep working; only KestrelPro's own accent is fixed.
  * This file is copyright under the latest version of the EUPL. */
 
-:root {
-  --kp-accent: #b4532a;
-}
-
 .kp-banner {
   margin-bottom: 15px;
 }
@@ -15,8 +11,8 @@
 }
 
 .label.kp-label-malicious {
-  background-color: #6b1d1d;
-  color: #fff;
+  background: var(--kp-violet-soft, #6b1d1d);
+  color: var(--kp-violet, #fff);
 }
 
 .kp-device {
@@ -24,7 +20,8 @@
 }
 
 .kp-domain {
-  font-family: var(--bs-font-monospace, monospace);
+  font-family: var(--kp-mono, monospace);
+  font-size: 0.95em;
   overflow-wrap: break-word;
 }
 
@@ -46,17 +43,31 @@
 }
 
 .kp-statusline {
-  margin: -5px 0 15px;
-  color: inherit;
-  opacity: 0.8;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px 16px;
+  margin: -6px 0 16px;
+  color: var(--kp-muted, inherit);
 }
 
-.kp-statusline .btn {
-  margin-left: 8px;
+.kp-statusline strong {
+  color: var(--kp-text, inherit);
 }
 
+.kp-state-text {
+  min-width: 0;
+}
+
+.kp-state-actions {
+  display: flex;
+  gap: 8px;
+}
+
+/* Upstream themes without the KestrelPro skin (LCARS, high contrast) */
 .small-box.kp-accent {
-  background-color: var(--kp-accent) !important;
+  background-color: var(--kp-accent, #b4532a) !important;
   color: #fff !important;
 }
 
@@ -78,7 +89,15 @@
 }
 
 .kp-settings textarea {
-  font-family: var(--bs-font-monospace, monospace);
+  font-family: var(--kp-mono, monospace);
+}
+
+/* Query Log: the AI badge is a real button, styled like a label */
+button.kp-ai {
+  border: 0;
+  margin-left: 6px;
+  cursor: pointer;
+  vertical-align: 1px;
 }
 
 .kp-builtin {

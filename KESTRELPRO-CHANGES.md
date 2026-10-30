@@ -34,3 +34,14 @@ onto it (dropping the old debrand commit), run `tools/debrand.sh`, run
 - `queries.lp` and `scripts/js/queries.js` (one marked block each): the Query Log shows
   an AI badge on domains KestrelPro has judged; clicking it shows the verdict, which list
   or rule blocked the domain, and one-click actions (`scripts/js/kestrel/querylog.js`).
+
+## 2026-10-29: Modern skin
+
+- `style/kestrelpro.css` and `style/kestrelpro-dark.css` (new): a modern skin for the
+  default themes (light, dark, darker, auto): neutral surfaces, KestrelPro's rust as the
+  single accent, soft tinted badges, stat tiles as cards, rounded inputs and buttons,
+  visible keyboard focus, press feedback, and a short dialog entrance (none under
+  reduced motion). LCARS and the high-contrast themes are untouched.
+- `scripts/lua/header.lp` (one marked block): loads the skin after the active theme,
+  with the dark tokens for the dark themes or, for "auto", when the system is dark.
+- Query Log: the AI badge is now a real `<button>` (keyboard and screen readers).

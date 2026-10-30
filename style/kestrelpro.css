@@ -1,0 +1,928 @@
+/* KestrelPro: modern skin for the default themes (light, dark, darker, auto).
+ *
+ * Loaded after the active theme by scripts/lua/header.lp, only for the default-* themes;
+ * LCARS and the high-contrast themes are left exactly as upstream ships them.
+ * Colours are tokens below; kestrelpro-dark.css redefines them for dark mode.
+ *
+ * Motion: only where it has a purpose (press feedback, dialog entrance, focus), custom
+ * ease-out curves, under 250 ms, hover effects only on real pointers, and none at all
+ * under prefers-reduced-motion. Navigation, tables and the sidebar don't animate.
+ *
+ * This file is copyright under the latest version of the EUPL. */
+
+:root {
+  color-scheme: light;
+  --kp-bg: #f7f6f4;
+  --kp-surface: #ffffff;
+  --kp-surface-2: #f2f1ee;
+  --kp-surface-3: #e9e7e3;
+  --kp-border: #e6e3df;
+  --kp-border-strong: #d4d0ca;
+  --kp-text: #1c1917;
+  --kp-text-2: #44403c;
+  --kp-muted: #6f6a64;
+  --kp-faint: #a19b94;
+  --kp-accent: #b4532a;
+  --kp-accent-hover: #9a4422;
+  --kp-accent-text: #ffffff;
+  --kp-accent-soft: rgba(180, 83, 42, 0.1);
+  --kp-accent-ring: rgba(180, 83, 42, 0.28);
+  --kp-success: #15803d;
+  --kp-success-soft: rgba(21, 128, 61, 0.1);
+  --kp-warning: #b45309;
+  --kp-warning-soft: rgba(217, 119, 6, 0.12);
+  --kp-danger: #c53030;
+  --kp-danger-soft: rgba(197, 48, 48, 0.1);
+  --kp-info: #2563eb;
+  --kp-info-soft: rgba(37, 99, 235, 0.1);
+  --kp-violet: #7c3aed;
+  --kp-violet-soft: rgba(124, 58, 237, 0.1);
+  --kp-grid: #ecebe8;
+  --kp-shadow-sm: 0 1px 2px rgba(28, 25, 23, 0.04);
+  --kp-shadow: 0 1px 2px rgba(28, 25, 23, 0.04), 0 4px 12px rgba(28, 25, 23, 0.04);
+  --kp-shadow-lg: 0 12px 40px rgba(28, 25, 23, 0.16), 0 2px 6px rgba(28, 25, 23, 0.06);
+  --kp-backdrop: rgba(12, 10, 9, 0.45);
+  --kp-radius: 12px;
+  --kp-radius-sm: 8px;
+  --kp-font: -apple-system, BlinkMacSystemFont, "Segoe UI Variable Text", "Segoe UI", system-ui, Roboto,
+    "Helvetica Neue", Arial, sans-serif;
+  --kp-mono: ui-monospace, "SF Mono", "Cascadia Code", "JetBrains Mono", Menlo, Consolas, monospace;
+  --kp-ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+  --animate-duration: 0.25s; /* toasts (animate.css) */
+}
+
+/* ---- Base --------------------------------------------------------------------------- */
+html,
+body,
+.wrapper,
+.content-wrapper,
+.right-side,
+.layout-boxed,
+.layout-boxed .wrapper,
+.login-page {
+  background: var(--kp-bg);
+}
+body {
+  font-family: var(--kp-font);
+  color: var(--kp-text);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+.layout-boxed .wrapper {
+  box-shadow: none;
+  border-left: 1px solid var(--kp-border);
+  border-right: 1px solid var(--kp-border);
+}
+h1,
+h2,
+h3,
+h4,
+.page-header h1 {
+  text-wrap: balance;
+}
+a {
+  color: var(--kp-accent);
+}
+a:hover,
+a:focus {
+  color: var(--kp-accent-hover);
+}
+code {
+  color: var(--kp-text-2);
+  background: var(--kp-surface-2);
+  border: 1px solid var(--kp-border);
+  border-radius: 6px;
+  font-family: var(--kp-mono);
+  font-size: 0.86em;
+  padding: 0.1em 0.4em;
+}
+hr,
+.page-header {
+  border-color: var(--kp-border);
+}
+.text-muted,
+.help-block {
+  color: var(--kp-muted);
+}
+.text-primary,
+.text-info,
+.text-light-blue {
+  color: var(--kp-accent) !important;
+}
+.text-green {
+  color: var(--kp-success) !important;
+}
+.text-red {
+  color: var(--kp-danger) !important;
+}
+.text-yellow,
+.text-orange {
+  color: var(--kp-warning) !important;
+}
+a,
+button,
+.btn,
+input,
+select,
+label,
+summary {
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+}
+::selection {
+  background: var(--kp-accent-ring);
+}
+
+/* Visible focus for keyboard users only */
+a:focus-visible,
+button:focus-visible,
+.btn:focus-visible,
+summary:focus-visible,
+[tabindex]:focus-visible,
+.sidebar-menu > li > a:focus-visible {
+  outline: 2px solid var(--kp-accent);
+  outline-offset: 2px;
+  border-radius: 6px;
+}
+
+/* Numbers line up */
+.statistic,
+.small-box h3,
+.description-header,
+table.dataTable td,
+.table td,
+.label {
+  font-variant-numeric: tabular-nums;
+}
+
+/* ---- Header ------------------------------------------------------------------------- */
+.main-header .navbar,
+.main-header .logo,
+.main-header .logo:hover {
+  background: var(--kp-surface);
+  color: var(--kp-text);
+}
+.main-header {
+  border-bottom: 1px solid var(--kp-border);
+  box-shadow: none;
+}
+.main-header .logo {
+  border-right: 1px solid var(--kp-border);
+  font-family: var(--kp-font);
+  letter-spacing: -0.01em;
+}
+.main-header .logo .logo-lg,
+.main-header .logo .logo-mini {
+  font-weight: 600;
+}
+.main-header .logo strong,
+.login-logo .logo-lg b {
+  color: var(--kp-accent);
+  font-weight: 700;
+}
+.main-header .navbar .nav > li > a,
+.main-header .navbar .nav > li > .navbar-text,
+.main-header .navbar .sidebar-toggle,
+.main-header .navbar .sidebar-toggle-svg {
+  background: transparent;
+  color: var(--kp-muted);
+}
+.main-header .navbar .nav > li > a:hover,
+.main-header .navbar .nav > li > a:active,
+.main-header .navbar .nav > li > a:focus,
+.main-header .navbar .nav .open > a,
+.main-header .navbar .nav .open > a:hover,
+.main-header .navbar .nav .open > a:focus,
+.main-header .navbar .sidebar-toggle:hover,
+.main-header .navbar .sidebar-toggle-svg:hover {
+  background: var(--kp-surface-2);
+  color: var(--kp-text);
+}
+.main-header .navbar .navbar-text code {
+  color: var(--kp-text-2);
+}
+.main-header li.user-header {
+  background: var(--kp-surface-2);
+}
+.main-header li.user-header p {
+  color: var(--kp-text-2);
+}
+.navbar-nav > .user-menu {
+  background: transparent;
+}
+.navbar-nav > .user-menu > .dropdown-menu > .user-body,
+.navbar-nav > .user-menu > .dropdown-menu > .user-footer {
+  background: var(--kp-surface);
+  border-color: var(--kp-border);
+}
+
+/* ---- Sidebar ------------------------------------------------------------------------ */
+.main-sidebar,
+.left-side,
+.sidebar {
+  background: var(--kp-surface);
+}
+.main-sidebar {
+  border-right: 1px solid var(--kp-border);
+}
+.user-panel > .info,
+.user-panel > .info > p,
+.user-panel > .info > a {
+  color: var(--kp-text-2);
+}
+.sidebar-menu > li.header {
+  background: transparent;
+  color: var(--kp-faint);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  padding: 18px 20px 6px;
+}
+.sidebar-menu > li > a,
+.sidebar a,
+.treeview-menu > li > a {
+  color: var(--kp-text-2);
+}
+.sidebar-menu > li > a {
+  border-left: 0 !important;
+  font-weight: 500;
+}
+.sidebar-menu > li > a > .menu-icon,
+.sidebar-menu > li > a > .fa,
+.treeview-menu > li > a > .fa {
+  color: var(--kp-muted);
+}
+.sidebar-menu > li:hover > a,
+.sidebar-menu > li > a:focus,
+.treeview-menu > li > a:hover,
+.treeview-menu > li > a:focus,
+.sidebar a:hover {
+  background: var(--kp-surface-2);
+  color: var(--kp-text);
+}
+.sidebar-menu > li.active > a,
+.sidebar-menu > li.menu-open > a,
+.treeview-menu > li.active > a {
+  background: var(--kp-accent-soft);
+  color: var(--kp-accent);
+  font-weight: 600;
+}
+.sidebar-menu > li.active > a > .menu-icon,
+.sidebar-menu > li.active > a > .fa,
+.treeview-menu > li.active > a > .fa {
+  color: var(--kp-accent);
+}
+.sidebar-menu > li > .treeview-menu {
+  background: transparent;
+}
+/* Rounded items when the sidebar is open; the collapsed icon rail keeps upstream geometry */
+@media (min-width: 768px) {
+  body:not(.sidebar-collapse) .sidebar-menu > li > a,
+  body:not(.sidebar-collapse) .treeview-menu > li > a {
+    margin: 1px 10px;
+    border-radius: var(--kp-radius-sm);
+    padding-left: 10px;
+  }
+}
+
+/* ---- Page header -------------------------------------------------------------------- */
+.page-header {
+  border-bottom: 0;
+  margin: 8px 0 18px;
+}
+.page-header h1,
+.content-header > h1 {
+  color: var(--kp-text);
+  font-size: 26px;
+  font-weight: 650;
+  letter-spacing: -0.02em;
+}
+.page-header small,
+.content-header > h1 > small {
+  display: block;
+  margin-top: 6px;
+  color: var(--kp-muted);
+  font-size: 15px;
+  line-height: 1.5;
+}
+
+/* ---- Cards: boxes and tabs ---------------------------------------------------------- */
+.box,
+.nav-tabs-custom {
+  background: var(--kp-surface);
+  border: 1px solid var(--kp-border);
+  border-radius: var(--kp-radius);
+  box-shadow: var(--kp-shadow);
+  color: var(--kp-text);
+}
+.box.box-primary,
+.box.box-info,
+.box.box-success,
+.box.box-warning,
+.box.box-danger,
+.box.box-default {
+  border-top-color: var(--kp-border);
+}
+.box-header,
+.box-header.with-border,
+.box-footer {
+  background: transparent;
+  border-color: var(--kp-border);
+  color: var(--kp-text);
+}
+.box-header .box-title,
+.box-title {
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: -0.005em;
+}
+.box-header .btn-box-tool {
+  color: var(--kp-muted);
+}
+/* AdminLTE "solid" boxes paint the header in a status colour; keep them neutral */
+.box.box-solid,
+.box.box-solid.box-info,
+.box.box-solid.box-primary,
+.box.box-solid.box-success,
+.box.box-solid.box-warning,
+.box.box-solid.box-danger,
+.box.box-solid.box-default {
+  border: 1px solid var(--kp-border);
+}
+.box.box-solid > .box-header,
+.box.box-solid.box-info > .box-header,
+.box.box-solid.box-primary > .box-header,
+.box.box-solid.box-success > .box-header,
+.box.box-solid.box-warning > .box-header,
+.box.box-solid.box-danger > .box-header,
+.box.box-solid.box-default > .box-header {
+  background: transparent;
+  color: var(--kp-text);
+}
+.box.box-solid > .box-header .btn,
+.box.box-solid > .box-header .btn-box-tool,
+.box.box-solid > .box-header a {
+  color: var(--kp-muted);
+}
+.nav-tabs-custom > .nav-tabs {
+  background: transparent;
+  border-bottom: 1px solid var(--kp-border);
+  border-radius: var(--kp-radius) var(--kp-radius) 0 0;
+  padding: 0 8px;
+}
+.nav-tabs-custom > .nav-tabs > li {
+  border-top: 0;
+  margin-bottom: -1px;
+}
+.nav-tabs-custom > .nav-tabs > li > a,
+.nav-tabs-custom > .nav-tabs > li > a:hover {
+  background: transparent;
+  border: 0;
+  color: var(--kp-muted);
+  font-weight: 500;
+}
+.nav-tabs-custom > .nav-tabs > li.active > a,
+.nav-tabs-custom > .nav-tabs > li.active:hover > a {
+  background: transparent;
+  color: var(--kp-text);
+  box-shadow: inset 0 -2px 0 var(--kp-accent);
+}
+.nav-tabs-custom > .nav-tabs > li:not(.active):hover {
+  background: transparent;
+}
+.nav-tabs-custom > .tab-content {
+  background: transparent;
+  border-radius: 0 0 var(--kp-radius) var(--kp-radius);
+}
+
+/* ---- Stat tiles: neutral cards with a tinted icon chip ------------------------------ */
+.small-box,
+.small-box.bg-aqua,
+.small-box.bg-green,
+.small-box.bg-yellow,
+.small-box.bg-red,
+.small-box.bg-blue,
+body .small-box.kp-accent {
+  background: var(--kp-surface) !important;
+  color: var(--kp-text) !important;
+  border: 1px solid var(--kp-border);
+  border-radius: var(--kp-radius);
+  box-shadow: var(--kp-shadow);
+}
+.small-box > .inner {
+  padding: 16px 18px 6px;
+}
+.small-box p,
+.small-box > .inner p {
+  color: var(--kp-muted);
+  font-size: 13px;
+  font-weight: 500;
+}
+.small-box h3 {
+  color: var(--kp-text);
+  font-size: 30px;
+  font-weight: 650;
+  letter-spacing: -0.02em;
+}
+.small-box span {
+  transition: none;
+}
+.small-box .icon,
+.small-box:hover .icon {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  z-index: 0;
+  width: 34px;
+  height: 34px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  font-size: 15px;
+  transform: none;
+  transition: none;
+  color: var(--kp-accent);
+  background: var(--kp-accent-soft);
+}
+.small-box .icon > i,
+.small-box .icon > .fa,
+.small-box .icon > .fas {
+  position: static;
+  font-size: 15px;
+  top: auto;
+}
+.small-box.bg-aqua .icon,
+.small-box.bg-blue .icon {
+  color: var(--kp-info);
+  background: var(--kp-info-soft);
+}
+.small-box.bg-green .icon {
+  color: var(--kp-success);
+  background: var(--kp-success-soft);
+}
+.small-box.bg-yellow .icon {
+  color: var(--kp-warning);
+  background: var(--kp-warning-soft);
+}
+.small-box.bg-red .icon {
+  color: var(--kp-danger);
+  background: var(--kp-danger-soft);
+}
+.small-box > .small-box-footer,
+.small-box > .small-box-footer:hover {
+  background: transparent;
+  color: var(--kp-muted);
+  border-top: 1px solid var(--kp-border);
+  text-align: left;
+  padding: 8px 18px;
+  font-size: 13px;
+  transition: color 150ms ease;
+}
+@media (hover: hover) and (pointer: fine) {
+  .small-box > .small-box-footer:hover {
+    color: var(--kp-text);
+  }
+}
+
+/* ---- Tables -------------------------------------------------------------------------- */
+.table {
+  color: var(--kp-text);
+}
+.table > thead > tr > th,
+table.dataTable thead th {
+  color: var(--kp-muted);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  border-bottom: 1px solid var(--kp-border) !important;
+  background: transparent;
+}
+.table > tbody > tr > td,
+.table > tbody > tr > th,
+.table > tfoot > tr > td,
+.table > tfoot > tr > th {
+  border-top: 1px solid var(--kp-border);
+}
+.table-bordered,
+.table-bordered > thead > tr > th,
+.table-bordered > tbody > tr > td,
+.table-bordered > tbody > tr > th,
+.table-bordered > tfoot > tr > td,
+.table-bordered > tfoot > tr > th {
+  border-left: 0;
+  border-right: 0;
+}
+.table-bordered {
+  border-top: 0;
+  border-bottom: 0;
+}
+.table-striped > tbody > tr:nth-of-type(odd) {
+  background: transparent;
+}
+.table-striped > tbody > tr:nth-of-type(even),
+table.dataTable.table-striped > tbody > tr.even {
+  background: color-mix(in srgb, var(--kp-surface-2) 55%, transparent);
+}
+@media (hover: hover) and (pointer: fine) {
+  .table-hover > tbody > tr:hover,
+  table.dataTable tbody tr:hover {
+    background: var(--kp-surface-2);
+  }
+}
+.dataTables_wrapper .dataTables_info,
+.dataTables_wrapper .dataTables_length,
+.dataTables_wrapper .dataTables_filter {
+  color: var(--kp-muted);
+}
+.pagination > li > a,
+.pagination > li > span,
+.dataTables_paginate .pagination li > a {
+  background: var(--kp-surface);
+  border-color: var(--kp-border);
+  color: var(--kp-text-2);
+}
+.pagination > li:first-child > a,
+.pagination > li:first-child > span {
+  border-radius: var(--kp-radius-sm) 0 0 var(--kp-radius-sm);
+}
+.pagination > li:last-child > a,
+.pagination > li:last-child > span {
+  border-radius: 0 var(--kp-radius-sm) var(--kp-radius-sm) 0;
+}
+.pagination > .active > a,
+.pagination > .active > a:hover,
+.pagination > .active > a:focus,
+.pagination > .active > span,
+.dataTables_paginate .pagination li.active > a {
+  background: var(--kp-accent);
+  border-color: var(--kp-accent);
+  color: var(--kp-accent-text);
+}
+.pagination > .disabled > a,
+.pagination > .disabled > span,
+.dataTables_paginate .pagination li.disabled > a {
+  background: var(--kp-surface);
+  color: var(--kp-faint);
+}
+
+/* ---- Buttons ------------------------------------------------------------------------- */
+.btn {
+  border-radius: var(--kp-radius-sm);
+  font-weight: 500;
+  box-shadow: var(--kp-shadow-sm);
+  transition:
+    background-color 150ms ease,
+    border-color 150ms ease,
+    color 150ms ease,
+    transform 160ms var(--kp-ease-out);
+}
+.btn-xs,
+.btn-group-xs > .btn {
+  border-radius: 6px;
+  padding: 2px 8px;
+}
+.btn-sm {
+  border-radius: 7px;
+}
+.btn:active,
+.btn.active {
+  transform: scale(0.97);
+  box-shadow: none;
+}
+.btn-default {
+  background: var(--kp-surface);
+  border-color: var(--kp-border-strong);
+  color: var(--kp-text);
+}
+.btn-primary {
+  background: var(--kp-accent);
+  border-color: var(--kp-accent);
+  color: var(--kp-accent-text);
+}
+.btn-danger {
+  background: var(--kp-danger);
+  border-color: var(--kp-danger);
+  color: #fff;
+}
+.btn-success {
+  background: var(--kp-success);
+  border-color: var(--kp-success);
+  color: #fff;
+}
+.btn-warning {
+  background: var(--kp-warning);
+  border-color: var(--kp-warning);
+  color: #fff;
+}
+/* Upstream uses btn-info for ordinary secondary actions (Refresh, Apply); a soft accent tint */
+.btn-info {
+  background: var(--kp-accent-soft);
+  border-color: transparent;
+  color: var(--kp-accent);
+}
+@media (hover: hover) and (pointer: fine) {
+  .btn-default:hover {
+    background: var(--kp-surface-2);
+    border-color: var(--kp-border-strong);
+    color: var(--kp-text);
+  }
+  .btn-primary:hover {
+    background: var(--kp-accent-hover);
+    border-color: var(--kp-accent-hover);
+    color: var(--kp-accent-text);
+  }
+  .btn-danger:hover,
+  .btn-success:hover,
+  .btn-warning:hover {
+    filter: brightness(0.92);
+    color: #fff;
+  }
+  .btn-info:hover {
+    background: var(--kp-accent-ring);
+    border-color: transparent;
+    color: var(--kp-accent);
+  }
+}
+.btn-default:focus,
+.btn-primary:focus,
+.btn-danger:focus,
+.btn-success:focus {
+  box-shadow: var(--kp-shadow-sm);
+}
+
+/* ---- Forms --------------------------------------------------------------------------- */
+.form-control:not(.btn),
+.dataTables_wrapper input[type="search"],
+.dataTables_wrapper select,
+.select2 .select2-selection,
+.input-group .input-group-addon {
+  background: var(--kp-surface);
+  border: 1px solid var(--kp-border-strong);
+  border-radius: var(--kp-radius-sm);
+  color: var(--kp-text);
+  box-shadow: none;
+}
+select,
+select.form-control {
+  background-color: var(--kp-surface);
+  color: var(--kp-text);
+}
+.input-group .form-control:first-child,
+.input-group-addon:first-child {
+  border-radius: var(--kp-radius-sm) 0 0 var(--kp-radius-sm);
+}
+.input-group .form-control:last-child,
+.input-group-addon:last-child,
+.input-group-btn:last-child > .btn {
+  border-radius: 0 var(--kp-radius-sm) var(--kp-radius-sm) 0;
+}
+.form-control:focus,
+.dataTables_wrapper input[type="search"]:focus {
+  border-color: var(--kp-accent);
+  box-shadow: 0 0 0 3px var(--kp-accent-ring);
+  outline: 0;
+}
+.form-control::placeholder {
+  color: var(--kp-faint);
+}
+input[type="range"],
+input[type="checkbox"],
+input[type="radio"] {
+  accent-color: var(--kp-accent);
+}
+/* Theme radios and checkboxes (icheck) */
+body [class*="icheck-"] > input:first-child + label::before,
+body [class*="icheck-"] > input:first-child + input[type="hidden"] + label::before {
+  border-color: var(--kp-border-strong);
+  background: var(--kp-surface);
+}
+body [class*="icheck-"] > input:first-child:checked + label::before,
+body [class*="icheck-"] > input:first-child:checked + input[type="hidden"] + label::before {
+  background-color: var(--kp-accent);
+  border-color: var(--kp-accent);
+}
+body [class*="icheck-"] > input:first-child:not(:checked):not(:disabled):hover + label::before {
+  border-color: var(--kp-accent);
+}
+
+/* ---- Labels and badges: soft tints -------------------------------------------------- */
+.label {
+  border-radius: 6px;
+  font-weight: 600;
+  font-size: 11px;
+  letter-spacing: 0.01em;
+  padding: 0.28em 0.6em;
+}
+.label-default {
+  background: var(--kp-surface-3);
+  color: var(--kp-text-2);
+}
+.label-primary,
+.sidebar-menu .label-primary {
+  background: var(--kp-info-soft) !important;
+  color: var(--kp-info) !important;
+}
+.label-success,
+.sidebar-menu .label.bg-green {
+  background: var(--kp-success-soft) !important;
+  color: var(--kp-success) !important;
+}
+.label-warning,
+.sidebar-menu .label.bg-yellow {
+  background: var(--kp-warning-soft) !important;
+  color: var(--kp-warning) !important;
+}
+.label-danger,
+.sidebar-menu .label.bg-red {
+  background: var(--kp-danger-soft) !important;
+  color: var(--kp-danger) !important;
+}
+.label-info {
+  background: var(--kp-info-soft) !important;
+  color: var(--kp-info) !important;
+}
+
+/* ---- Alerts and callouts ------------------------------------------------------------ */
+.alert {
+  border-radius: 10px;
+  border: 1px solid transparent;
+  color: var(--kp-text) !important;
+}
+.alert a {
+  color: inherit !important;
+  font-weight: 600;
+  text-decoration: underline;
+}
+.alert-warning {
+  background: var(--kp-warning-soft) !important;
+  border-color: color-mix(in srgb, var(--kp-warning) 30%, transparent);
+}
+.alert-danger,
+.alert-error {
+  background: var(--kp-danger-soft) !important;
+  border-color: color-mix(in srgb, var(--kp-danger) 30%, transparent);
+}
+.alert-info {
+  background: var(--kp-info-soft) !important;
+  border-color: color-mix(in srgb, var(--kp-info) 30%, transparent);
+}
+.alert-success {
+  background: var(--kp-success-soft) !important;
+  border-color: color-mix(in srgb, var(--kp-success) 30%, transparent);
+}
+/* Toasts (bootstrap-notify): solid surface so they read over any content */
+[data-notify="container"].alert {
+  background: var(--kp-surface) !important;
+  border: 1px solid var(--kp-border);
+  box-shadow: var(--kp-shadow-lg);
+}
+[data-notify="container"].alert-success [data-notify="icon"] {
+  color: var(--kp-success);
+}
+[data-notify="container"].alert-danger [data-notify="icon"],
+[data-notify="container"].alert-error [data-notify="icon"] {
+  color: var(--kp-danger);
+}
+[data-notify="container"].alert-warning [data-notify="icon"] {
+  color: var(--kp-warning);
+}
+[data-notify="container"].alert-info [data-notify="icon"] {
+  color: var(--kp-info);
+}
+
+/* ---- Menus and dialogs -------------------------------------------------------------- */
+.dropdown-menu {
+  background: var(--kp-surface);
+  border: 1px solid var(--kp-border);
+  border-radius: 10px;
+  box-shadow: var(--kp-shadow-lg);
+}
+.dropdown-menu > li > a {
+  color: var(--kp-text-2);
+}
+.modal {
+  overscroll-behavior: contain;
+}
+.modal-content {
+  background: var(--kp-surface);
+  border: 1px solid var(--kp-border);
+  border-radius: 14px;
+  box-shadow: var(--kp-shadow-lg);
+  color: var(--kp-text);
+}
+.modal-header,
+.modal-footer {
+  border-color: var(--kp-border);
+}
+.modal-title {
+  font-weight: 600;
+}
+.modal-backdrop {
+  background: var(--kp-backdrop);
+}
+.modal-backdrop.in {
+  opacity: 1;
+}
+/* Dialogs settle in from 96% instead of sliding down a quarter of the screen.
+   Centered origin: a dialog isn't anchored to its trigger. */
+.modal.fade .modal-dialog {
+  opacity: 0;
+  transform: scale(0.96);
+  transition:
+    transform 200ms var(--kp-ease-out),
+    opacity 200ms var(--kp-ease-out);
+}
+.modal.in .modal-dialog {
+  opacity: 1;
+  transform: none;
+}
+
+/* Links inside tables and the footer: text colour, accent on hover. One accent, used sparingly. */
+.table a,
+table.dataTable a,
+.main-footer a,
+.version-info a {
+  color: var(--kp-text);
+  text-decoration: none;
+}
+.main-footer .version-info a {
+  color: var(--kp-muted);
+}
+@media (hover: hover) and (pointer: fine) {
+  .table a:hover,
+  table.dataTable a:hover,
+  .main-footer a:hover {
+    color: var(--kp-accent);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+}
+
+/* ---- Footer and misc ---------------------------------------------------------------- */
+.main-footer {
+  background: transparent;
+  border-top: 1px solid var(--kp-border);
+  color: var(--kp-muted);
+}
+.graphs-grid {
+  background-color: var(--kp-grid);
+}
+.graphs-ticks {
+  color: var(--kp-muted);
+}
+.progress {
+  background: var(--kp-surface-3);
+  border-radius: 999px;
+  box-shadow: none;
+}
+.description-block > .description-text {
+  color: var(--kp-muted);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+}
+.border-right {
+  border-right: 1px solid var(--kp-border) !important;
+}
+
+/* ---- Sign-in ------------------------------------------------------------------------ */
+.login-box,
+.login-box .box,
+.login-box-body {
+  background: var(--kp-surface);
+}
+.login-box {
+  border: 1px solid var(--kp-border);
+  border-radius: 16px;
+  box-shadow: var(--kp-shadow-lg);
+}
+.login-logo .logo-lg {
+  color: var(--kp-text);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+.loginpage-logo {
+  border-radius: 22px;
+}
+.login-page .box {
+  box-shadow: none;
+}
+.login-page .box.box-warning,
+.login-page .box.box-info,
+.login-page .box.box-danger {
+  border-top: 1px solid var(--kp-border);
+}
+
+/* ---- Reduced motion: keep colour changes, drop movement ---------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  .btn:active,
+  .btn.active {
+    transform: none;
+  }
+  .modal.fade .modal-dialog {
+    transform: none;
+    transition: opacity 150ms ease;
+  }
+}

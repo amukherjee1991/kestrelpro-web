@@ -125,6 +125,17 @@ is_authenticated = mg.request_info.is_authenticated
     <link rel="stylesheet" href="<?=pihole.fileversion('style/themes/' ..theme.name.. '.css')?>">
 <? end ?>
 
+    <!-- kestrelpro:begin modern skin for the default themes; LCARS and high contrast stay as they are -->
+<? if startsWith(theme.name, 'default') then ?>
+    <link rel="stylesheet" href="<?=pihole.fileversion('style/kestrelpro.css')?>">
+<? if theme.name == 'default-auto' then ?>
+    <link rel="stylesheet" href="<?=pihole.fileversion('style/kestrelpro-dark.css')?>" media="(prefers-color-scheme: dark)">
+<? elseif theme.dark then ?>
+    <link rel="stylesheet" href="<?=pihole.fileversion('style/kestrelpro-dark.css')?>">
+<? end ?>
+<? end ?>
+    <!-- kestrelpro:end -->
+
     <noscript><link rel="stylesheet" href="<?=pihole.fileversion('vendor/js-warn/js-warn.css')?>"></noscript>
 
     <!-- scripts -->
