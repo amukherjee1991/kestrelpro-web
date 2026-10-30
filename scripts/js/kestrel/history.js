@@ -33,6 +33,13 @@ function undoButton(row) {
 }
 
 $(() => {
+  // "Home network / VPN" only means something when VPN address ranges are configured.
+  kestrel
+    .api("/settings")
+    .then(s => {
+      if (!s.vpn_subnets || s.vpn_subnets.length === 0) $("#kp-network").closest(".form-group").addClass("hidden");
+    })
+    .catch(() => {});
   const preset = utils.parseQueryString().what;
   if (preset && $(`#kp-what option[value="${CSS.escape(preset)}"]`).length > 0) $("#kp-what").val(preset);
 
