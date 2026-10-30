@@ -18,11 +18,13 @@ mg.include('scripts/lua/kestrel_common.lp','r')
         <div class="box">
             <div class="box-header with-border"><h3 class="box-title">When the model flags a domain</h3></div>
             <div class="box-body">
-                <div class="radio">
-                    <label><input type="radio" name="mode" value="review"> <strong>Review first</strong>: suggestions wait in <em>Needs approval</em> until you decide</label>
+                <div>
+                    <input type="radio" name="mode" id="kp-mode-review" value="review">
+                    <label for="kp-mode-review"><strong>Review first</strong>: suggestions wait in <em>Needs approval</em> until you decide</label>
                 </div>
-                <div class="radio">
-                    <label><input type="radio" name="mode" value="auto"> <strong>Automatic</strong>: block straight away (you can undo any block in History)</label>
+                <div>
+                    <input type="radio" name="mode" id="kp-mode-auto" value="auto">
+                    <label for="kp-mode-auto"><strong>Automatic</strong>: block straight away (you can undo any block in History)</label>
                 </div>
                 <hr>
                 <div class="form-group">
@@ -46,11 +48,17 @@ mg.include('scripts/lua/kestrel_common.lp','r')
                     <input type="text" class="form-control" id="kp-model" placeholder="gemma4:12b">
                     <p class="help-block">Any Ollama model that supports structured JSON output. Pull it first: <code>ollama pull &lt;model&gt;</code>.</p>
                 </div>
-                <div class="radio">
-                    <label><input type="radio" name="cadence" value="realtime"> <strong>Real time</strong>: new domains are judged within about 15 seconds</label>
+                <div>
+                    <input type="radio" name="cadence" id="kp-cadence-realtime" value="realtime">
+                    <label for="kp-cadence-realtime"><strong>Real time</strong>: new domains are judged within about 15 seconds</label>
                 </div>
-                <div class="radio">
-                    <label><input type="radio" name="cadence" value="eco"> <strong>Eco</strong>: one pass every <input type="number" id="kp-interval" min="1" max="1440" class="input-sm" style="width:5em"> minutes (for a slow or CPU-only model)</label>
+                <div>
+                    <input type="radio" name="cadence" id="kp-cadence-eco" value="eco">
+                    <label for="kp-cadence-eco"><strong>Eco</strong>: one pass every few minutes, for a slow or CPU-only model</label>
+                </div>
+                <div class="form-group kp-interval">
+                    <label for="kp-interval">Minutes between passes in Eco mode</label>
+                    <input type="number" id="kp-interval" min="1" max="1440" class="form-control">
                 </div>
             </div>
         </div>

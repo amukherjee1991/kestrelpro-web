@@ -93,7 +93,7 @@ function recent(rows) {
   for (const r of rows.slice(0, 8)) {
     body.append(
       `<tr><td class="kp-domain">${utils.escapeHtml(r.domain)}</td><td>${kestrel.categoryLabel(r.category)}</td>` +
-        `<td>${kestrel.statusLabel(r.status)}</td><td>${utils.datetime(r.updated_at, false, true)}</td></tr>`
+        `<td>${kestrel.statusLabel(r.status)}</td><td class="hidden-xs">${utils.datetime(r.updated_at, false, true)}</td></tr>`
     );
   }
 }

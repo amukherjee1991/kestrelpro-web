@@ -28,7 +28,8 @@ function fill(s) {
   for (const [key, label] of Object.entries(BLOCKABLE)) {
     const checked = s.block_categories.includes(key) ? " checked" : "";
     box.append(
-      `<div class="checkbox"><label><input type="checkbox" name="category" value="${key}"${checked}> ${utils.escapeHtml(label)}</label></div>`
+      `<div><input type="checkbox" name="category" id="kp-cat-${key}" value="${key}"${checked}>` +
+        `<label for="kp-cat-${key}">${utils.escapeHtml(label)}</label></div>`
     );
   }
 

@@ -25,7 +25,12 @@
 
 .kp-domain {
   font-family: var(--bs-font-monospace, monospace);
-  word-break: break-all;
+  overflow-wrap: break-word;
+}
+
+.kp-interval {
+  max-width: 16em;
+  margin: 10px 0 0 26px;
 }
 
 .kp-reason {

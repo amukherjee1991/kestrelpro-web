@@ -17,6 +17,13 @@ if hits=$(grep -n -E 'Pi-hole|Pi-<(strong|b)>hole|P<strong>h</strong>' "${files[
     fail=1
 fi
 
+# Donation links belong on the About page only, where they are clearly for the upstream project.
+if hits=$(grep -n 'pi-hole\.net/donate' "${files[@]}"); then
+    echo "Pi-hole donate link outside the About page:"
+    echo "${hits}"
+    fail=1
+fi
+
 # Pi-hole's logo colours (red/green teardrop) must not be in any image we ship.
 if hits=$(grep -l -i -E '#?(96060c|f60d1a|22b225|29fc2e)' img/*.svg img/favicons/*.svg 2>/dev/null); then
     echo "Pi-hole logo colours in: ${hits}"

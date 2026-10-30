@@ -1,0 +1,25 @@
+# KestrelPro changes to the web interface
+
+This is a modified version of Pi-hole's web interface (EUPL-1.2). The changes below were
+made by the KestrelPro project. Changed lines in upstream files are marked
+`kestrelpro:begin` / `kestrelpro:end`, except for the debranding commit, which is generated
+by `tools/debrand.sh`. The original copyright and licence notices are unchanged.
+
+## 2026-10-29: kestrelpro/v6.6.1-k0 (based on upstream v6.6.1)
+
+- New pages: `kestrel.lp` (AI review), `kestrel-review.lp` (Needs approval),
+  `kestrel-decisions.lp`, `kestrel-history.lp`, `kestrel-settings.lp`, `kestrel-about.lp`,
+  with `scripts/lua/kestrel_common.lp`, `scripts/js/kestrel/*.js` and `style/kestrel.css`.
+  They call the KestrelPro engine with the admin interface's own session.
+- `scripts/lua/sidebar.lp`: a "KestrelPro" menu section (one marked block).
+- Debranding (`tools/debrand.sh`, checked by `tools/check-branding.sh`): KestrelPro logo
+  and favicons; the Pi-hole name replaced in titles, menus and help text; links to
+  Pi-hole's website, forum, GitHub and donation page replaced by the About page, which
+  states the origin of the software and links to the upstream donation page.
+
+## Branch model
+
+`kestrelpro/<upstream-tag>-kN` = upstream tag + KestrelPro commits + one generated
+"debrand" commit on top. To move to a new upstream tag: rebase the KestrelPro commits
+onto it (dropping the old debrand commit), run `tools/debrand.sh`, run
+`tools/check-branding.sh`, and commit the result as the new debrand commit.

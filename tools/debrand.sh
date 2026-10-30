@@ -51,7 +51,8 @@ perl -0 -i -pe 's{<li class="header text-uppercase">Donate</li>\s*<li class="men
                         <i class="fa fa-fw menu-icon fa-circle-info"></i> <span>About KestrelPro</span>
                     </a>
                 </li>}s' scripts/lua/sidebar.lp
-perl -0 -i -pe 's{<strong><a href="https://pi-hole\.net/donate/"[^>]*>.*?</a></strong> if you found this useful\.}{<a href="<?=webhome?>kestrel/about">About KestrelPro</a>}s' scripts/lua/footer.lp
+perl -0 -i -pe 's{<strong><a href="https://pi-hole\.net/donate/"[^>]*>.*?</a></strong> if you found this useful\.}{<a href="<?=webhome?>kestrel/about">About KestrelPro</a>}s' \
+    scripts/lua/footer.lp login.lp
 
 # --- remaining prose -----------------------------------------------------------------------
 # "your Pi-hole", "the Pi-hole DHCP server", page titles, the web app manifest ...
