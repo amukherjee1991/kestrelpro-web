@@ -53,7 +53,7 @@ mg.include('scripts/lua/kestrel_common.lp','r')
                     <div class="col-sm-4 col-xs-4"><div class="description-block"><h5 class="description-header" id="kp-sum-undone">–</h5><span class="description-text">Undone</span></div></div>
                 </div>
                 <br>
-                <table id="kp-history" class="table table-striped table-bordered" width="100%"></table>
+                <div class="table-responsive"><table id="kp-history" class="table table-striped table-bordered" width="100%"></table></div>
             </div>
         </div>
     </div>

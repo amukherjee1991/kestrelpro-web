@@ -30,7 +30,7 @@ mg.include('scripts/lua/kestrel_common.lp','r')
                     <button type="submit" class="btn btn-danger"><i class="fa fa-ban"></i> Block</button>
                 </form>
                 <br>
-                <table id="kp-table" class="table table-striped table-bordered" width="100%" data-mode="decisions"></table>
+                <div class="table-responsive"><table id="kp-table" class="table table-striped table-bordered" width="100%" data-mode="decisions"></table></div>
             </div>
         </div>
     </div>

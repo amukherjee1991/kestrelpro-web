@@ -8,13 +8,6 @@
 
 "use strict";
 
-const BLOCKABLE = {
-  ads: "Ads",
-  tracking: "Tracking and analytics",
-  telemetry: "Product telemetry",
-  malicious: "Malware, phishing and scams",
-};
-
 function fill(s) {
   $(`input[name="mode"][value="${s.mode}"]`).prop("checked", true);
   $(`input[name="cadence"][value="${s.cadence}"]`).prop("checked", true);
@@ -24,14 +17,9 @@ function fill(s) {
   $("#kp-interval").val(Math.round(s.interval_seconds / 60));
   $("#kp-protected").val((s.protected_extra || []).join("\n"));
 
-  const box = $("#kp-categories").empty();
-  for (const [key, label] of Object.entries(BLOCKABLE)) {
-    const checked = s.block_categories.includes(key) ? " checked" : "";
-    box.append(
-      `<div><input type="checkbox" name="category" id="kp-cat-${key}" value="${key}"${checked}>` +
-        `<label for="kp-cat-${key}">${utils.escapeHtml(label)}</label></div>`
-    );
-  }
+  $('input[name="category"]').each((_i, el) => {
+    el.checked = s.block_categories.includes(el.value);
+  });
 
   const builtin = s.protected_builtin || [];
   $("#kp-builtin-count").text(builtin.length);

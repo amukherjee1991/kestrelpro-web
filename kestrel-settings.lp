@@ -34,7 +34,12 @@ mg.include('scripts/lua/kestrel_common.lp','r')
                 </div>
                 <div class="form-group">
                     <label>Block these kinds of domain</label>
-                    <div id="kp-categories"></div>
+                    <div id="kp-categories">
+                        <div><input type="checkbox" name="category" id="kp-cat-ads" value="ads"><label for="kp-cat-ads">Ads</label></div>
+                        <div><input type="checkbox" name="category" id="kp-cat-tracking" value="tracking"><label for="kp-cat-tracking">Tracking and analytics</label></div>
+                        <div><input type="checkbox" name="category" id="kp-cat-telemetry" value="telemetry"><label for="kp-cat-telemetry">Product telemetry</label></div>
+                        <div><input type="checkbox" name="category" id="kp-cat-malicious" value="malicious"><label for="kp-cat-malicious">Malware, phishing and scams</label></div>
+                    </div>
                 </div>
             </div>
         </div>

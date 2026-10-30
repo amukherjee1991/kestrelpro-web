@@ -22,7 +22,7 @@ mg.include('scripts/lua/kestrel_common.lp','r')
                 </div>
             </div>
             <div class="box-body">
-                <table id="kp-table" class="table table-striped table-bordered" width="100%" data-mode="review"></table>
+                <div class="table-responsive"><table id="kp-table" class="table table-striped table-bordered" width="100%" data-mode="review"></table></div>
             </div>
         </div>
     </div>
