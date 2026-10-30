@@ -45,3 +45,9 @@ onto it (dropping the old debrand commit), run `tools/debrand.sh`, run
 - `scripts/lua/header.lp` (one marked block): loads the skin after the active theme,
   with the dark tokens for the dark themes or, for "auto", when the system is dark.
 - Query Log: the AI badge is now a real `<button>` (keyboard and screen readers).
+
+## 2026-10-30: Repository housekeeping
+
+- Removed upstream's `.github/` (CI workflows, scheduled stale bots, dependabot, issue
+  templates, CODEOWNERS) and `CONTRIBUTING.md`: they automate the upstream project, not this one.
+- `README.md` replaced with a KestrelPro one. `LICENSE` is unchanged.
